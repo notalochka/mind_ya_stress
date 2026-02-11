@@ -1,0 +1,196 @@
+.infoPage {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding-bottom: 0;
+}
+
+.badge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #53cc58;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 14px;
+}
+
+.badge svg {
+  flex-shrink: 0;
+}
+
+.badge span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.text {
+  font-size: 22px;
+  font-weight: 600;
+  line-height: 1.6;
+  color: #fff;
+  max-width: 800px;
+  text-align: center;
+}
+.text span {
+  color: #b5edb7;
+}
+
+.imageContainer {
+  width: 100%;
+  max-width: 600px;
+  margin-bottom: 10px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.image {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.testimonial {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 12px;
+  padding: 20px;
+  margin-bottom: 10px;
+  width: 100%;
+  max-width: 600px;
+  text-align: left;
+}
+
+.testimonialHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 16px;
+}
+
+.stars {
+  display: flex;
+  gap: 2px;
+}
+
+.star {
+  font-size: 18px;
+}
+
+.userName {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+}
+
+.testimonialTitle {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
+  margin-bottom: 12px;
+}
+
+.testimonialText {
+  font-size: 12px;
+  line-height: 1.6;
+  color: rgba(255, 255, 255, 0.9);
+}
+
+.progressSection {
+  width: 100%;
+  max-width: 600px;
+  margin-top: auto;
+  margin-bottom: 10px;
+}
+
+.progressBarContainer {
+  position: relative;
+  width: 100%;
+  margin-bottom: 5px;
+  height: 20px;
+}
+
+.progressBar {
+  width: 100%;
+  height: 100%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progressBarFilled {
+  height: 100%;
+  background-color: #e44240;
+  border-radius: 4px;
+  transition: width 0.1s linear;
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-width: 50px;
+}
+
+.progressText {
+  font-size: 12px;
+  font-weight: 600;
+  color: #fff;
+  white-space: nowrap;
+}
+
+.progressLabel {
+  font-size: 12px;
+  color: rgba(255, 255, 255, 0.7);
+  text-align: left;
+}
+
+@media (max-width: 768px) {
+  .badge {
+    padding: 6px 12px;
+    margin-bottom: 20px;
+  }
+
+  .badge span {
+    font-size: 11px;
+  }
+
+  .text {
+    font-size: 16px;
+    margin-bottom: 24px;
+    padding: 0 20px;
+  }
+
+  .imageContainer {
+    margin-bottom: 24px;
+  }
+
+  .image {
+    border-radius: 10px;
+  }
+
+  .testimonial {
+    padding: 16px;
+    margin-bottom: 24px;
+  }
+  .progressSection {
+    margin-bottom: 24px;
+  }
+
+  .testimonialTitle {
+    font-size: 16px;
+  }
+
+  .testimonialText {
+    font-size: 13px;
+  }
+
+  .progressLabel {
+    font-size: 11px;
+  }
+}
+

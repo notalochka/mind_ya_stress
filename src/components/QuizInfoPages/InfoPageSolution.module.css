@@ -1,0 +1,296 @@
+.infoPage {
+  width: 100%;
+  background-color: #fff;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 20px 60px 20px;
+}
+
+.content {
+  max-width: 800px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.goodNewsBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #10b981;
+  border-radius: 8px;
+  padding: 10px 16px;
+  margin-bottom: 24px;
+}
+
+.goodNewsBadge svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  stroke: #fff;
+}
+
+.goodNewsBadge span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 32px;
+  line-height: 1.3;
+}
+
+.textBlock {
+  width: 100%;
+  margin-bottom: 24px;
+}
+
+.gifContainer {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.gif {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.text {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #4a5568;
+  margin-bottom: 12px;
+}
+
+.solutionText {
+  width: 100%;
+  margin-bottom: 40px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(16, 185, 129, 0.2);
+  border-bottom: 1px solid rgba(16, 185, 129, 0.2);
+}
+
+.solutionMain {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.research {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+}
+
+.researchBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #e44240;
+  border-radius: 8px;
+  padding: 10px 16px;
+}
+
+.researchBadge svg {
+  flex-shrink: 0;
+}
+
+.researchBadge span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.researchImageContainer {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.researchImage {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.testimonials {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  margin-bottom: 40px;
+}
+
+.testimonialCard {
+  background-color: #f7fafc;
+  border: 2px solid #10b981;
+  border-radius: 12px;
+  padding: 24px;
+  text-align: left;
+}
+
+.stars {
+  font-size: 18px;
+  margin-bottom: 12px;
+}
+
+.testimonialText {
+  font-size: 16px;
+  line-height: 1.6;
+  color: #1a1a1a;
+  margin-bottom: 12px;
+}
+
+.testimonialAuthor {
+  font-size: 14px;
+  color: #4a5568;
+  font-weight: 600;
+}
+
+.continueButton {
+  padding: 16px 32px;
+  background-color: #10b981;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.continueButton svg {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.continueButton:hover {
+  background-color: #059669;
+  transform: translateY(-2px);
+  box-shadow: 1px 5px 20px 8px rgba(16, 185, 129, 0.4);  
+}
+
+.continueButton:hover svg {
+  transform: translateX(4px);
+}
+
+.continueButton:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .infoPage {
+    padding: 0px 20px 40px 20px;
+  }
+
+  .goodNewsBadge {
+    padding: 6px 12px;
+    margin-bottom: 20px;
+  }
+
+  .goodNewsBadge svg {
+    width: 16px;
+    height: 16px;
+  }
+
+  .goodNewsBadge span {
+    font-size: 11px;
+  }
+
+  .title {
+    font-size: 24px;
+    margin-bottom: 24px;
+  }
+
+  .text {
+    font-size: 12px;
+    margin-bottom: 10px;
+  }
+
+  .gifContainer {
+    max-width: 300px;
+    margin-bottom: 24px;
+  }
+
+  .gif {
+    border-radius: 10px;
+  }
+
+  .solutionText {
+    margin-bottom: 20px;
+    padding: 10px 0;
+  }
+
+  .solutionMain {
+    font-size: 15px;
+    margin-bottom: 10px;
+  }
+
+  .researchBadge {
+    padding: 6px 12px;
+  }
+
+  .researchBadge span {
+    font-size: 11px;
+  }
+
+  .researchImageContainer {
+    max-width: 350px;
+  }
+
+  .researchImage {
+    border-radius: 10px;
+  }
+
+  .testimonials {
+    gap: 16px;
+    margin-bottom: 32px;
+  }
+
+  .testimonialCard {
+    padding: 20px;
+  }
+
+  .continueButton {
+    padding: 14px 28px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+

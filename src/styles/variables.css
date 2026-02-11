@@ -1,0 +1,16 @@
+:root {
+  /* Глобальні кольори */
+  --color-primary: #5671A6;
+  --color-primary-dark: #3d5380;
+  --color-secondary: #B0C1D9;
+  --color-tertiary: rgb(207, 217, 235);
+  --color-light: #F2F2F2;
+  --color-dark: #0D0D0D;
+  
+  /* Кольори для тексту та фону */
+  --color-text: #0D0D0D;
+  --color-bg: #EFEDED;
+  
+  /* Колір логотипу для світлої теми */
+  --logo-color: var(--color-primary);
+}

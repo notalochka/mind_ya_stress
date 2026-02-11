@@ -1,0 +1,76 @@
+.progressContainer {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  max-width: 500px;
+  margin: 0 auto 30px;
+  padding: 0 6px;
+}
+
+.progressLine {
+  position: absolute;
+  top: 50%;
+  left: 6px;
+  right: 6px;
+  height: 6px;
+  background-color: var(--color-tertiary);
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.progressLineFilled {
+  height: 100%;
+  background-color: var(--theme-progress, var(--color-dark));
+  transition: width 0.3s ease, background-color 0.3s ease;
+}
+
+.progressDot {
+  position: relative;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background-color: var(--color-tertiary);
+  border: 2px solid var(--color-tertiary);
+  z-index: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all 0.3s ease;
+}
+
+.progressDotActive {
+  background-color: var(--theme-progress, var(--color-dark));
+  border-color: var(--theme-progress, var(--color-dark));
+  transition: background-color 0.3s ease, border-color 0.3s ease;
+}
+
+.progressDotCompleted {
+  background-color: var(--color-dark);
+  border-color: var(--color-dark);
+}
+
+.progressDot svg {
+  width: 12px;
+  height: 12px;
+}
+
+.progressDot svg path {
+  stroke: var(--theme-progress-checkmark, #fff);
+  transition: stroke 0.3s ease;
+}
+
+@media (max-width: 768px) {
+  .progressContainer {
+    max-width: 320px;
+    margin: 0 auto 30px;
+  }
+}
+
+
+
+
+
+
+

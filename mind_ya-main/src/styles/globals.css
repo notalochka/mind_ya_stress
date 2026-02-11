@@ -1,0 +1,29 @@
+/* Глобальні стилі */
+* {
+  box-sizing: border-box;
+  padding: 0;
+  margin: 0;
+}
+
+html,
+body {
+  max-width: 100vw;
+  overflow-x: hidden;
+}
+
+html {
+  overflow-y: auto; /* повертаємо нормальний скрол сторінки */
+}
+
+body {
+  overflow-y: visible;
+  color: #000;
+  background: #fff;
+}
+
+/* Дефолтне значення для теми хедера (для головної сторінки) */
+:root {
+  --theme-header-bg: #fff;
+}
+
+
