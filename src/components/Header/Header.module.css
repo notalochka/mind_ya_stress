@@ -29,6 +29,9 @@ body.quiz-theme-primary .header {
 body.quiz-theme-primary .logo,
 body.quiz-theme-primary .header .logo,
 body.quiz-theme-primary .logoContainer .logo,
+body.quiz-theme-dark .logo,
+body.quiz-theme-dark .header .logo,
+body.quiz-theme-dark .logoContainer .logo,
 [data-theme='dark'] .logo,
 .dark .logo,
 body.dark .logo {
@@ -37,6 +40,11 @@ body.dark .logo {
 
 /* Якщо фон хедера темний (primary тема) - білий логотип через CSS змінну */
 body.quiz-theme-primary {
+  --logo-color: #ffffff;
+}
+
+/* Якщо фон хедера темний (dark тема) - білий логотип через CSS змінну */
+body.quiz-theme-dark {
   --logo-color: #ffffff;
 }
 

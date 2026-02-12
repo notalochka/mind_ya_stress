@@ -1,0 +1,277 @@
+.analyzingPage {
+  background-color: #1a1a1a;
+  color: #ffffff;
+  display: flex;
+  flex-direction: column;
+  padding-bottom: 10px;
+}
+
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  padding: 40px 26px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 40px;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  text-align: center;
+  color: #ffffff;
+  margin: 0;
+  animation: fadeInUp 0.6s ease-out;
+}
+
+/* Прогрес-бар */
+.progressSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 12px;
+  animation: fadeInUp 0.6s ease-out 0.2s both;
+}
+
+.progressBarContainer {
+  width: 100%;
+  max-width: 400px;
+  height: 25px;
+  background-color: rgba(255, 255, 255, 0.1);
+  border-radius: 4px;
+  overflow: hidden;
+  position: relative;
+}
+
+.progressBarFill {
+  height: 100%;
+  width: 0%;
+  background: linear-gradient(90deg, #10b981 0%, #059669 100%);
+  border-radius: 4px;
+  transition: width 0.15s ease-out;
+  box-shadow: 0 0 10px rgba(16, 185, 129, 0.5);
+  will-change: width;
+}
+
+.progressText {
+  font-size: 18px;
+  font-weight: 600;
+  color: #ffffff;
+}
+
+/* Список перевірок */
+.checksList {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
+
+.checkItem {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+}
+
+.checkIcon {
+  width: 24px;
+  height: 24px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: #10b981;
+  flex-shrink: 0;
+}
+
+.checkIcon svg {
+  animation: scaleIn 0.3s ease-out;
+}
+
+.spinner {
+  animation: rotate 1.5s linear infinite;
+}
+
+.spinnerCircle {
+  stroke-dasharray: 50.265;
+  stroke-dashoffset: 50.265;
+  animation: spinnerDash 1.5s ease-in-out infinite;
+}
+
+@keyframes spinnerDash {
+  0% {
+    stroke-dashoffset: 50.265;
+  }
+  50% {
+    stroke-dashoffset: 0;
+  }
+  100% {
+    stroke-dashoffset: -50.265;
+  }
+}
+
+.checkContent {
+  display: flex;
+  flex-direction: column;
+  gap: 4px;
+  flex: 1;
+}
+
+.checkLabel {
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+}
+
+.checkStatus {
+  font-size: 16px;
+  font-weight: 400;
+  color: #10b981;
+  animation: fadeIn 0.4s ease-out;
+}
+
+.dots {
+  display: inline-block;
+}
+
+.dot {
+  display: inline-block;
+  animation: dotPulse 1.4s infinite;
+  animation-fill-mode: both;
+}
+
+.dot:nth-child(1) {
+  animation-delay: 0s;
+}
+
+.dot:nth-child(2) {
+  animation-delay: 0.2s;
+}
+
+.dot:nth-child(3) {
+  animation-delay: 0.4s;
+}
+
+@keyframes dotPulse {
+  0%, 60%, 100% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  30% {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Роздільник */
+.divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent 0%, rgba(255, 255, 255, 0.2) 50%, transparent 100%);
+  margin: 20px 0;
+}
+
+/* Відгук */
+.testimonial {
+  width: 100%;
+  padding: 24px;
+  background: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid #10b981;
+  text-align: left;
+}
+
+.stars {
+  font-size: 20px;
+  margin-bottom: 12px;
+}
+
+.testimonialText {
+  font-size: 18px;
+  font-weight: 500;
+  color: #ffffff;
+  margin: 0 0 12px 0;
+  line-height: 1.5;
+}
+
+.testimonialAuthor {
+  font-size: 16px;
+  font-weight: 400;
+  color: rgba(255, 255, 255, 0.7);
+  margin: 0;
+}
+
+/* Анімації */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes scaleIn {
+  from {
+    transform: scale(0);
+  }
+  to {
+    transform: scale(1);
+  }
+}
+
+@keyframes rotate {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Адаптивність */
+@media (max-width: 768px) {
+
+
+  .container {
+    padding: 30px 20px;
+    gap: 30px;
+  }
+
+  .title {
+    font-size: 24px;
+  }
+
+  .checkLabel {
+    font-size: 16px;
+  }
+
+  .checkStatus {
+    font-size: 14px;
+  }
+
+  .testimonial {
+    padding: 20px;
+  }
+
+  .testimonialText {
+    font-size: 16px;
+  }
+
+  .testimonialAuthor {
+    font-size: 14px;
+  }
+}
+

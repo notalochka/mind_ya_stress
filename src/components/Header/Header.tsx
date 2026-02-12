@@ -12,7 +12,8 @@ const Header: React.FC = () => {
         .trim();
       
       // Якщо фон темний (primary тема або темний колір), логотип білий
-      if (headerBg === '#5671A6' || headerBg === 'rgb(86, 113, 166)') {
+      if (headerBg === '#5671A6' || headerBg === 'rgb(86, 113, 166)' || 
+          headerBg === '#1a1a1a' || headerBg === 'rgb(26, 26, 26)') {
         setLogoColor('#ffffff');
       } else {
         setLogoColor('var(--color-primary)');

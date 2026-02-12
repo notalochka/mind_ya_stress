@@ -215,8 +215,8 @@ const Quiz: NextPage = () => {
     if (currentStepNumber < totalSteps) {
       router.push(`/quiz?step=${currentStepNumber + 1}`, undefined, { shallow: true });
     } else {
-      // Завершення тесту - можна додати сторінку результатів
-      // router.push('/quiz/result');
+      // Завершення тесту - перехід на сторінку аналізу
+      router.push('/quiz/analyzing');
     }
   };
 

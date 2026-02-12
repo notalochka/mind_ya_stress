@@ -1,0 +1,265 @@
+.resultPage {
+  background-color: #fff;
+  color: #1a1a1a;
+  padding-bottom: 10px;
+}
+
+.container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 26px;
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+}
+
+.title {
+  font-size: 36px;
+  font-weight: 700;
+  color: #1a1a1a;
+  text-align: center;
+  margin: 0;
+  line-height: 1.3;
+}
+
+.stressLevel {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 20px;
+  background-color: #fef2f2;
+  border-radius: 12px;
+  border: 2px solid #ef4444;
+}
+
+.stressLevelLabel {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+}
+
+.stressLevelValue {
+  font-size: 24px;
+  font-weight: 700;
+  color: #ef4444;
+  text-transform: uppercase;
+}
+
+.description {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #4a5568;
+  text-align: center;
+  margin: 0;
+}
+
+.insightsSection {
+  width: 100%;
+}
+
+.insightsTitle {
+  font-size: 24px;
+  font-weight: 700;
+  color: #1a1a1a;
+  margin-bottom: 20px;
+}
+
+.insightsList {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.insightItem {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #1a1a1a;
+  margin: 0;
+  padding: 0;
+}
+
+.goodNewsSection {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 24px;
+  padding: 32px;
+  background-color: #f0fdf4;
+  border-radius: 12px;
+  border: 2px solid #10b981;
+}
+
+.goodNewsBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #10b981;
+  border-radius: 8px;
+  padding: 10px 16px;
+}
+
+.goodNewsBadge svg {
+  flex-shrink: 0;
+  width: 20px;
+  height: 20px;
+  stroke: #fff;
+}
+
+.goodNewsBadge span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.goodNewsText {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.goodNewsText strong {
+  color: #10b981;
+  font-weight: 700;
+}
+
+.statsSection {
+  padding-top: 40px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  gap: 16px;
+}
+
+.statsText {
+  font-size: 20px;
+  font-weight: 600;
+  color: #1a1a1a;
+  margin: 0;
+}
+
+.statsSource {
+  font-size: 16px;
+  color: #6b7280;
+  margin: 0;
+  font-style: italic;
+}
+
+.chartContainer {
+  width: 100%;
+  max-width: 600px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.chart {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.understandButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  padding: 16px 32px;
+  background-color: var(--color-primary);
+  color: #ffffff;
+  border: none;
+  border-radius: 12px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 32px;
+}
+
+.understandButton svg {
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.understandButton:hover {
+  background-color: var(--color-primary-dark);
+  transform: translateY(-2px);
+  box-shadow: 1px 5px 30px 3px var(--color-primary);
+}
+
+.understandButton:hover svg {
+  transform: translateX(4px);
+}
+
+.understandButton:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .resultPage {
+    padding-top: 60px;
+  }
+
+  .container {
+    padding: 30px 20px;
+    gap: 24px;
+  }
+
+  .title {
+    font-size: 28px;
+  }
+
+  .stressLevel {
+    flex-direction: column;
+    gap: 8px;
+  }
+
+  .stressLevelLabel {
+    font-size: 18px;
+  }
+
+  .stressLevelValue {
+    font-size: 20px;
+  }
+
+  .description {
+    font-size: 18px;
+  }
+
+  .insightsTitle {
+    font-size: 20px;
+  }
+
+  .insightItem {
+    font-size: 16px;
+    padding: 12px;
+  }
+
+  .goodNewsSection {
+    padding: 24px 20px;
+  }
+
+  .goodNewsText {
+    font-size: 16px;
+  }
+
+  .statsText {
+    font-size: 18px;
+  }
+
+  .statsSource {
+    font-size: 14px;
+  }
+}
+
