@@ -246,12 +246,15 @@
 
 
   .container {
-    padding: 30px 20px;
-    gap: 30px;
+    padding: 20px;
+    gap: 20px;
+  }
+  .progressBarContainer {
+    height: 20px;
   }
 
   .title {
-    font-size: 24px;
+    font-size: 20px;
   }
 
   .checkLabel {
@@ -263,15 +266,19 @@
   }
 
   .testimonial {
-    padding: 20px;
+    padding: 15px 20px;
+  }
+
+  .stars {
+    font-size: 14px;
   }
 
   .testimonialText {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .testimonialAuthor {
-    font-size: 14px;
+    font-size: 12px;
   }
 }
 

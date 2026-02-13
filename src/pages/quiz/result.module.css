@@ -208,20 +208,19 @@
 
 @media (max-width: 768px) {
   .resultPage {
-    padding-top: 60px;
+    padding-top: 0px;
   }
 
   .container {
     padding: 30px 20px;
-    gap: 24px;
+    gap: 14px;
   }
 
   .title {
-    font-size: 28px;
+    font-size: 24px;
   }
 
   .stressLevel {
-    flex-direction: column;
     gap: 8px;
   }
 
@@ -234,24 +233,33 @@
   }
 
   .description {
-    font-size: 18px;
+    font-size: 16px;
   }
 
   .insightsTitle {
-    font-size: 20px;
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .insightsList {
+    gap: 10px;
   }
 
   .insightItem {
     font-size: 16px;
-    padding: 12px;
+    padding: 0px 5px;
   }
 
   .goodNewsSection {
-    padding: 24px 20px;
+    padding: 20px;
+    gap: 10px;
   }
 
   .goodNewsText {
     font-size: 16px;
+  }
+  .statsSection {
+    padding-top: 20px;
+    gap: 10px;
   }
 
   .statsText {
@@ -260,6 +268,9 @@
 
   .statsSource {
     font-size: 14px;
+  }
+  .understandButton {
+    margin-top: 20px;
   }
 }
 

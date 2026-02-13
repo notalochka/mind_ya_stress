@@ -50,11 +50,11 @@ body.quiz-theme-dark {
 
 @media (max-width: 768px) {
   .header {
-    padding: 10px 20px;
+    padding: 5px 20px;
   }
 
   .logo {
-    width: 200px;
+    width: 130px;
     height: auto;
   }
 }

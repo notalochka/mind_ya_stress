@@ -220,7 +220,7 @@
 
   .goodNewsBadge {
     padding: 6px 12px;
-    margin-bottom: 20px;
+    margin-bottom: 10px;
   }
 
   .goodNewsBadge svg {
@@ -229,17 +229,17 @@
   }
 
   .goodNewsBadge span {
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .title {
-    font-size: 24px;
-    margin-bottom: 24px;
+    font-size: 20px;
+    margin-bottom: 10px;
   }
 
   .text {
     font-size: 12px;
-    margin-bottom: 10px;
+    margin-bottom: 0px;
   }
 
   .gifContainer {
@@ -257,16 +257,16 @@
   }
 
   .solutionMain {
-    font-size: 15px;
-    margin-bottom: 10px;
+    font-size: 14px;
+    margin-bottom: 2px;
   }
 
   .researchBadge {
     padding: 6px 12px;
   }
-
+  
   .researchBadge span {
-    font-size: 11px;
+    font-size: 14px;
   }
 
   .researchImageContainer {
@@ -278,12 +278,30 @@
   }
 
   .testimonials {
-    gap: 16px;
-    margin-bottom: 32px;
+    gap: 10px;
+    margin-bottom: 20px;
   }
 
   .testimonialCard {
-    padding: 20px;
+    padding: 10px 15px;
+  }
+
+  .stars {
+    font-size: 14px;
+    margin-bottom: 2px;
+  }
+  
+  .testimonialText {
+    font-size: 14px;
+    line-height: 1.6;
+    color: #1a1a1a;
+    margin-bottom: 10px;
+  }
+  
+  .testimonialAuthor {
+    font-size: 12px;
+    color: #4a5568;
+    font-weight: 600;
   }
 
   .continueButton {
