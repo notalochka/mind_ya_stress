@@ -34,7 +34,7 @@ export interface InfoStep extends QuizStep {
   type: 'info';
   componentKey: string;
   props?: Record<string, any>;
-  theme?: 'default' | 'primary' | 'dark' | 'blue' | 'green';
+  theme?: 'default' | 'primary' | 'dark' | 'warm' | 'blue' | 'green';
 }
 
 export type Step = QuestionStep | MultipleStep | InfoStep;

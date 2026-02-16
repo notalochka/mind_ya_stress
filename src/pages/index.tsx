@@ -27,10 +27,10 @@ const Home: NextPage = () => {
       <Header />
       <main className={styles.main}>
         <h1 className={styles.title}>
-          Дізнайся, чому ти постійно <span className={styles.gradientText}>виснажена</span> — і як це <span className={styles.gradientText}>змінити за 14 днів</span>
+        ДЛЯ ЖІНОК, ЯКІ ВТОМИЛИСЬ БУТИ <span className={styles.gradientText}>«СИЛЬНИМИ»</span>
         </h1>
         <p className={styles.subtitle}>
-          2-хвилинний тест покаже твій рівень стресу та що з цим робити
+        Тест за 2 хвилини покаже твій тип стресута що саме допоможе в твоїй ситуації
         </p>
         
         <section className={styles.quiz}>

@@ -38,7 +38,7 @@ const Stories: NextPage = () => {
       <main className={styles.storiesPage}>
         <div className={styles.container}>
           <h1 className={styles.title}>
-            Історії тих, хто починав так само
+          Вони починали точно так, як ти зараз
           </h1>
 
           <div className={styles.storiesList}>

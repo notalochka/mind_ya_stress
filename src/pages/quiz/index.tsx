@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
+import Image from 'next/image';
 import Header from '@/components/Header/Header';
 import { ProgressIndicator } from '@/components/ProgressIndicator/ProgressIndicator';
 import { infoPageComponents } from '@/components/QuizInfoPages';
@@ -53,8 +54,6 @@ const Quiz: NextPage = () => {
   });
   
   const [showNavigationButtons, setShowNavigationButtons] = useState(true);
-  const [showFeedbackScreen, setShowFeedbackScreen] = useState(false);
-  const [feedbackMessage, setFeedbackMessage] = useState<string>('');
 
   // Зберігаємо відповіді в sessionStorage при кожній зміні
   useEffect(() => {
@@ -95,6 +94,11 @@ const Quiz: NextPage = () => {
         document.documentElement.style.setProperty('--theme-header-bg', '#1a1a1a');
         document.documentElement.style.setProperty('--logo-color', '#ffffff');
         document.body.style.backgroundColor = '#1a1a1a';
+      } else if (theme === 'warm') {
+        // Для теми warm: теплий білий фон (#fff8f0) та primary колір логотипу
+        document.documentElement.style.setProperty('--theme-header-bg', '#fff8f0');
+        document.documentElement.style.setProperty('--logo-color', 'var(--color-primary)');
+        document.body.style.backgroundColor = '#fff8f0';
       } else {
         // Для дефолтної теми: білий фон та primary колір логотипу
         document.documentElement.style.setProperty('--theme-header-bg', '#fff');
@@ -122,22 +126,19 @@ const Quiz: NextPage = () => {
 
   // Завантажуємо відповідь, якщо вона вже була дана
   useEffect(() => {
-    // Скидаємо фідбек-екран тільки при зміні кроку (не під час показу)
-    if (!showFeedbackScreen) {
-      if (currentStep?.type === 'question' && answers[currentStepNumber]) {
-        const answer = answers[currentStepNumber];
-        setSelectedOption(Array.isArray(answer) ? answer[0] : answer as number);
-        setSelectedMultipleOptions([]);
-      } else if (currentStep?.type === 'multiple' && answers[currentStepNumber]) {
-        const answer = answers[currentStepNumber];
-        setSelectedMultipleOptions(Array.isArray(answer) ? answer : [answer as number]);
-        setSelectedOption(null);
-      } else {
-        setSelectedOption(null);
-        setSelectedMultipleOptions([]);
-      }
+    if (currentStep?.type === 'question' && answers[currentStepNumber]) {
+      const answer = answers[currentStepNumber];
+      setSelectedOption(Array.isArray(answer) ? answer[0] : answer as number);
+      setSelectedMultipleOptions([]);
+    } else if (currentStep?.type === 'multiple' && answers[currentStepNumber]) {
+      const answer = answers[currentStepNumber];
+      setSelectedMultipleOptions(Array.isArray(answer) ? answer : [answer as number]);
+      setSelectedOption(null);
+    } else {
+      setSelectedOption(null);
+      setSelectedMultipleOptions([]);
     }
-  }, [currentStepNumber, currentStep, answers, showFeedbackScreen]);
+  }, [currentStepNumber, currentStep, answers]);
 
   // Контролюємо видимість кнопок навігації для інформаційних сторінок
   useEffect(() => {
@@ -150,29 +151,6 @@ const Quiz: NextPage = () => {
     }
   }, [currentStep]);
 
-  // Автоматичний перехід після фідбек-екрану
-  useEffect(() => {
-    if (showFeedbackScreen) {
-      const timer = setTimeout(() => {
-        // Переходимо на наступний крок
-        if (currentStepNumber < totalSteps) {
-          const nextStep = currentStepNumber + 1;
-          router.push(`/quiz?step=${nextStep}`, undefined, { shallow: true });
-        }
-        // Стани закриються автоматично при зміні currentStepNumber
-      }, 4000); // 3.5 секунди
-
-      return () => clearTimeout(timer);
-    }
-  }, [showFeedbackScreen, currentStepNumber, totalSteps, router]);
-
-  // Скидаємо фідбек-екран при зміні кроку
-  useEffect(() => {
-    if (showFeedbackScreen && currentStepNumber !== 2) {
-      setShowFeedbackScreen(false);
-      setShowNavigationButtons(true);
-    }
-  }, [currentStepNumber, showFeedbackScreen]);
 
   const handleNext = () => {
     if (currentStep?.type === 'question' && selectedOption !== null) {
@@ -192,18 +170,6 @@ const Quiz: NextPage = () => {
         setCompletedSteps(prev => [...prev, currentStepNumber]);
       }
 
-      // Якщо це step-2, показуємо фідбек-екран
-      if (currentStepNumber === 2) {
-        const selectedCount = selectedMultipleOptions.length;
-        if (selectedCount >= 3) {
-          setFeedbackMessage('💛\nЦе багато. І те, що ти досі тримаєшся — це сила, а не слабкість. Але так не має бути.');
-        } else {
-          setFeedbackMessage('💛\nЦе вже впливає на твоє життя. Добре, що ти це помічаєш.');
-        }
-        setShowFeedbackScreen(true);
-        setShowNavigationButtons(false);
-        return; // Не переходимо далі, чекаємо на автоматичний перехід
-      }
     } else if (currentStep?.type === 'info') {
       // Для інформаційних сторінок просто відмічаємо як завершену
       if (!completedSteps.includes(currentStepNumber)) {
@@ -239,8 +205,7 @@ const Quiz: NextPage = () => {
     }
   };
 
-  // Якщо показується фідбек-екран, не перевіряємо currentStep
-  if (!showFeedbackScreen && !currentStep) {
+  if (!currentStep) {
     return (
       <>
         <Header />
@@ -284,34 +249,21 @@ const Quiz: NextPage = () => {
       <Head>
         <title>Тест - Крок {currentStepNumber}</title>
       </Head>
-      {!showFeedbackScreen && <Header />}
+      <Header />
       <main className={`${styles.quizPage} ${
         currentStep?.type === 'info' 
           ? styles[`theme-${(currentStep as InfoStep).theme || 'default'}`] 
           : ''
       }`}>
-        {showFeedbackScreen ? (
-          <div className={styles.feedbackScreen}>
-            <div className={styles.feedbackScreenContent}>
-              <p className={styles.feedbackScreenText}>
-                {feedbackMessage.split('\n').map((line, index) => (
-                  <React.Fragment key={index}>
-                    {line}
-                    {index < feedbackMessage.split('\n').length - 1 && <br />}
-                  </React.Fragment>
-                ))}
-              </p>
-            </div>
-          </div>
+        {currentStep?.type === 'info' ? (
+          renderInfoStep(currentStep as InfoStep)
         ) : (
           <div className={styles.quizContainer}>
-            {currentStep?.type !== 'info' && (
             <ProgressIndicator
               currentStep={currentStepNumber}
               totalSteps={totalSteps}
               completedSteps={completedSteps}
             />
-            )}
 
             {currentStep && currentStep.type === 'question' ? (
             <>
@@ -428,7 +380,7 @@ const Quiz: NextPage = () => {
               renderInfoStep(currentStep)
             ) : null}
 
-            {showNavigationButtons && currentStep && currentStep.type !== 'info' && (
+            {showNavigationButtons && currentStep && (
             <div className={styles.navigationButtons}>
               <button
                 className={styles.backButton}
@@ -481,7 +433,7 @@ const Quiz: NextPage = () => {
           </div>
         )}
       </main>
-      {!showFeedbackScreen && <QuizFooter />}
+      <QuizFooter />
     </>
   );
 };

@@ -21,7 +21,7 @@
 
 .quizPage.theme-default {
   background-color: #fff;
-  --theme-header-bg: var(--color-bg);
+  --theme-header-bg: #fff;
   --theme-progress: var(--color-dark);
   --theme-progress-checkmark: #fff;
   --theme-button-bg: var(--color-dark);
@@ -39,6 +39,17 @@
   --theme-button-text: #1a1a1a;
   --theme-back-button-bg: rgba(255, 255, 255, 0.2);
   --theme-back-button-text: #fff;
+}
+
+.quizPage.theme-warm {
+  background-color: #fff8f0;
+  --theme-header-bg: #fff8f0;
+  --theme-progress: var(--color-dark);
+  --theme-progress-checkmark: #fff8f0;
+  --theme-button-bg: var(--color-dark);
+  --theme-button-text: #fff;
+  --theme-back-button-bg: var(--color-light);
+  --theme-back-button-text: var(--color-text);
 }
 
 .quizContainer {
@@ -261,6 +272,15 @@
   max-width: 700px;
   padding: 60px 40px;
   text-align: center;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.feedbackTextBlock {
+  width: 100%;
+  margin-bottom: 32px;
 }
 
 .feedbackScreenText {
@@ -271,6 +291,140 @@
   white-space: pre-line;
   animation: fadeInText 0.7s ease-in 0.3s both;
   letter-spacing: -0.02em;
+  margin: 0;
+}
+
+.feedbackGifContainer {
+  width: 100%;
+  max-width: 400px;
+  margin-bottom: 32px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feedbackGif {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.feedbackDetails {
+  width: 100%;
+  margin-bottom: 32px;
+}
+
+.feedbackDetailText {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #2d3748;
+  margin-bottom: 12px;
+  font-weight: 500;
+}
+
+.feedbackEmphasis {
+  width: 100%;
+  margin-bottom: 32px;
+  padding: 24px 0;
+  border-top: 1px solid rgba(45, 55, 72, 0.2);
+  border-bottom: 1px solid rgba(45, 55, 72, 0.2);
+}
+
+.feedbackEmphasisText {
+  font-size: 20px;
+  line-height: 1.6;
+  color: #2d3748;
+  margin-bottom: 12px;
+  font-weight: 600;
+}
+
+.feedbackResearch {
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  width: 100%;
+}
+
+.feedbackResearchBadge {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background-color: #e44240;
+  border-radius: 8px;
+  padding: 10px 16px;
+}
+
+.feedbackResearchBadge svg {
+  flex-shrink: 0;
+}
+
+.feedbackResearchBadge span {
+  font-size: 14px;
+  font-weight: 600;
+  color: #fff;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.feedbackResearchImageContainer {
+  width: 100%;
+  max-width: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.feedbackResearchImage {
+  width: 100%;
+  height: auto;
+  border-radius: 12px;
+  object-fit: contain;
+}
+
+.feedbackContinueButton {
+  padding: 16px 32px;
+  background-color: #10b981;
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(16, 185, 129, 0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.feedbackContinueButton svg {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.feedbackContinueButton:hover {
+  background-color: #059669;
+  transform: translateY(-2px);
+  box-shadow: 1px 5px 20px 8px rgba(16, 185, 129, 0.4);
+}
+
+.feedbackContinueButton:hover svg {
+  transform: translateX(4px);
+}
+
+.feedbackContinueButton:active {
+  transform: translateY(0);
 }
 
 @keyframes fadeInScreen {
@@ -530,9 +684,68 @@
     max-width: 90%;
   }
 
+  .feedbackScreenContent {
+    padding: 40px 20px;
+  }
+
+  .feedbackTextBlock {
+    margin-bottom: 20px;
+  }
+
   .feedbackScreenText {
     font-size: 18px;
     line-height: 1.6;
+  }
+
+  .feedbackGifContainer {
+    max-width: 300px;
+    margin-bottom: 20px;
+  }
+
+  .feedbackGif {
+    border-radius: 10px;
+  }
+
+  .feedbackDetails {
+    margin-bottom: 20px;
+  }
+
+  .feedbackDetailText {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .feedbackEmphasis {
+    margin-bottom: 20px;
+    padding: 20px 0;
+  }
+
+  .feedbackEmphasisText {
+    font-size: 14px;
+    margin-bottom: 10px;
+  }
+
+  .feedbackResearchBadge {
+    padding: 6px 12px;
+  }
+
+  .feedbackResearchBadge span {
+    font-size: 14px;
+  }
+
+  .feedbackResearchImageContainer {
+    max-width: 350px;
+  }
+
+  .feedbackResearchImage {
+    border-radius: 10px;
+  }
+
+  .feedbackContinueButton {
+    padding: 14px 28px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
   }
 
   .optionIndicator {

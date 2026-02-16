@@ -1,6 +1,8 @@
 import { ComponentType } from 'react';
 import InfoPageChronicStress from './InfoPageChronicStress';
 import InfoPageSolution from './InfoPageSolution';
+import InfoPageStep2Feedback from './InfoPageStep2Feedback';
+import InfoPagePractice from './InfoPagePractice';
 
 // Базовий компонент для інформаційних сторінок
 const DefaultInfoPage: ComponentType<any> = ({ title, text }) => {
@@ -16,7 +18,8 @@ const DefaultInfoPage: ComponentType<any> = ({ title, text }) => {
 export const infoPageComponents: Record<string, ComponentType<any>> = {
   // Додавайте нові компоненти тут
   'default-info': DefaultInfoPage,
-  'info-chronic-stress': InfoPageChronicStress,
+  'info-step2-feedback': InfoPageStep2Feedback,
+  'info-chronic-stress': InfoPagePractice,
   'info-solution': InfoPageSolution,
 };
 

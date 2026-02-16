@@ -1,0 +1,288 @@
+.infoPage {
+  width: 100%;
+  background-color: #1a1a1a;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0px 20px 40px 20px;
+}
+
+.content {
+  max-width: 700px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.instruction {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #fff;
+  margin-bottom: 32px;
+  opacity: 0.95;
+}
+
+.stepsContainer {
+  width: 100%;
+  margin-bottom: 40px;
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.step {
+  text-align: left;
+  padding: 20px;
+  background-color: rgba(255, 255, 255, 0.05);
+  border-radius: 12px;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  position: relative;
+  transition: all 0.3s ease;
+}
+
+.stepActive {
+  background-color: rgba(255, 255, 255, 0.08);
+  border-color: rgba(255, 255, 255, 0.2);
+}
+
+.stepNumber {
+  font-size: 16px;
+  font-weight: 600;
+  color: var(--color-primary);
+  margin-bottom: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+}
+
+.stepText {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #fff;
+  margin: 0;
+  opacity: 0.9;
+}
+
+.startButton {
+  padding: 16px 32px;
+  background-color: var(--color-primary);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin-top: 20px;
+  box-shadow: 0 4px 12px rgba(86, 113, 166, 0.3);
+}
+
+.startButton:hover {
+  background-color: #4a5f8f;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 16px rgba(86, 113, 166, 0.4);
+}
+
+.startButton:active {
+  transform: translateY(0);
+}
+
+.timer {
+  font-size: 64px;
+  font-weight: 700;
+  color: var(--color-primary);
+  margin: 20px 0 0 0;
+  animation: pulse 1s ease-in-out infinite;
+  line-height: 1;
+  text-align: center;
+}
+
+.pauseIndicator {
+  font-size: 32px;
+  color: var(--color-primary);
+  margin: 20px 0 0 0;
+  text-align: center;
+  animation: dotPulse 1.5s ease-in-out infinite;
+}
+
+.stepCompletedContainer {
+  background-color: rgba(16, 185, 129, 0.1);
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.stepCompletedIcon {
+  font-size: 32px;
+  color: #10b981;
+  margin: 20px 0 0 0;
+  text-align: center;
+  font-weight: 700;
+}
+
+@keyframes pulse {
+  0%, 100% {
+    transform: scale(1);
+    opacity: 1;
+  }
+  50% {
+    transform: scale(1.1);
+    opacity: 0.8;
+  }
+}
+
+.finalSection {
+  width: 100%;
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.finalTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #fff;
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.resultText {
+  font-size: 20px;
+  line-height: 1.7;
+  color: #fff;
+  margin-bottom: 32px;
+  font-weight: 500;
+}
+
+.explanation {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #fff;
+  margin-bottom: 32px;
+  opacity: 0.9;
+}
+
+.nextStep {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #fff;
+  margin-bottom: 40px;
+  opacity: 0.9;
+}
+
+.continueButton {
+  padding: 16px 32px;
+  background-color: #fff;
+  box-shadow: 0 4px 12px rgba(255, 255, 255, 0.2);
+  color: #1a1a1a;
+  border: none;
+  border-radius: 8px;
+  font-size: 18px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  margin: 0 auto;
+  margin-top: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+}
+
+.continueButton svg {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.continueButton:hover {
+  background-color: #f0f0f0;
+  transform: translateY(-2px);
+  box-shadow: 1px 5px 20px 8px rgba(255, 255, 255, 0.2);
+}
+
+.continueButton:hover svg {
+  transform: translateX(4px);
+}
+
+.continueButton:active {
+  transform: translateY(0);
+}
+
+@media (max-width: 768px) {
+  .infoPage {
+    padding: 0px 20px 20px 20px;
+  }
+
+  .title {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .instruction {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .stepsContainer {
+    margin-bottom: 10px;
+    gap: 10px;
+  }
+
+  .step {
+    padding: 10px;
+  }
+
+  .stepNumber {
+    font-size: 14px;
+    margin-bottom: 8px;
+  }
+
+  .stepText {
+    font-size: 12px;
+  }
+
+  .timer {
+    font-size: 30px;
+    margin: 10px 0;
+  }
+  .stepCompletedIcon {
+    font-size: 20px;
+  }
+  .finalSection {
+    margin-top: 20px;
+    padding-top: 10px;
+  }
+  .finalTitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+  .resultText {
+    font-size: 14px;
+    margin-bottom: 14px;
+  }
+
+  .explanation {
+    font-size: 12px;
+    margin-bottom: 24px;
+  }
+
+
+  .startButton,
+  .continueButton {
+    padding: 14px 28px;
+    font-size: 16px;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+

@@ -1,13 +1,13 @@
 import React from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
-import styles from './InfoPageSolution.module.css';
+import styles from './InfoPageStep2Feedback.module.css';
 
-interface InfoPageSolutionProps {
+interface InfoPageStep2FeedbackProps {
   onContinue?: () => void;
 }
 
-const InfoPageSolution: React.FC<InfoPageSolutionProps> = ({ onContinue }) => {
+const InfoPageStep2Feedback: React.FC<InfoPageStep2FeedbackProps> = ({ onContinue }) => {
   const router = useRouter();
   const { step } = router.query;
   const currentStepNumber = step ? parseInt(step as string, 10) : 1;
@@ -16,6 +16,7 @@ const InfoPageSolution: React.FC<InfoPageSolutionProps> = ({ onContinue }) => {
     if (onContinue) {
       onContinue();
     } else {
+      // Переходимо на наступний крок
       router.push(`/quiz?step=${currentStepNumber + 1}`, undefined, { shallow: true });
     }
   };
@@ -23,42 +24,52 @@ const InfoPageSolution: React.FC<InfoPageSolutionProps> = ({ onContinue }) => {
   return (
     <div className={styles.infoPage}>
       <div className={styles.content}>
-        <div className={styles.goodNewsBadge}>
-          <svg xmlns="http://www.w3.org/2000/svg" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round">
-            <path d="M12 2L2 7l10 5 10-5-10-5z"></path>
-            <path d="M2 17l10 5 10-5M2 12l10 5 10-5"></path>
-          </svg>
-          <span>ХОРОША НОВИНА</span>
-        </div>
-        <h1 className={styles.title}>
-          Є спосіб "перезавантажити" нервову систему.
-        </h1>
         <div className={styles.textBlock}>
-          <p className={styles.text}>
-            Не медитації по 30 хвилин (хто має час?). <br />Не дорогий психолог (хоча він теж корисний). <br />Не "просто відпочинь" (якби це працювало...).
+          <p className={styles.mainText}>
+            💛<br />
+            Ти щойно визнала те, що більшість тримає в собі.<br />
+            Це вже великий крок.            
           </p>
+          <p className={styles.detailText}>
+            І це не слабкість — це твоя нервова система,<br />
+            яка застрягла в режимі "бийся або тікай".<br /><br />
+            Як комп'ютер з 47 відкритими вкладками —<br />
+            він не "поганий". Він перевантажений.</p>
         </div>
+        
         <div className={styles.gifContainer}>
           <Image
-            src="/step-6.gif"
-            alt="Solution animation"
+            src="/step-3_1.gif"
+            alt="Breathing animation"
             width={400}
             height={300}
             className={styles.gif}
             unoptimized
           />
         </div>
-        <div className={styles.solutionText}>
-          <p className={styles.solutionMain}>
-            Прості техніки по 10 хвилин, які працюють на рівні тіла.
+
+        <div className={styles.details}>
+          <p className={styles.detailText}>
+            Тіло виробляє кортизол — навіть уві сні.
           </p>
-          <p className={styles.solutionMain}>
-            Вони знижують кортизол фізично.
+          <p className={styles.detailText}>
+            Тому ти прокидаєшся втомленою.
           </p>
-          <p className={styles.solutionMain}>
-            Тому що стрес живе не в голові — а в тілі.
+          <p className={styles.detailText}>
+            Тому зриваєшся на дрібниці.
           </p>
         </div>
+
+        <div className={styles.emphasis}>
+          <p className={styles.emphasisText}>
+            Це не твій характер.
+          </p>
+          <p className={styles.emphasisText}>
+            Це хронічний стрес.
+          </p>
+          <p className={styles.emphasisText}>І його можна перезавантажити.</p>
+        </div>
+
         <div className={styles.research}>
           <div className={styles.researchBadge}>
             <svg xmlns="http://www.w3.org/2000/svg" width="20" height="19" viewBox="0 0 20 19" fill="none">
@@ -68,7 +79,7 @@ const InfoPageSolution: React.FC<InfoPageSolutionProps> = ({ onContinue }) => {
           </div>
           <div className={styles.researchImageContainer}>
             <Image
-              src="/step-7.jpg"
+              src="/step-3-1.jpg"
               alt="Research data"
               width={600}
               height={400}
@@ -76,25 +87,9 @@ const InfoPageSolution: React.FC<InfoPageSolutionProps> = ({ onContinue }) => {
             />
           </div>
         </div>
-        <div className={styles.testimonials}>
-          <div className={styles.testimonialCard}>
-            <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
-            <p className={styles.testimonialText}>ДО: Снодійне щовечора. Вранці — як зомбі.<br />ПІСЛЯ: На 3-й день заснула сама. До 12.30.</p>
-            <p className={styles.testimonialAuthor}>Марина, 34, Київ</p>
-          </div>
-          <div className={styles.testimonialCard}>
-            <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
-            <p className={styles.testimonialText}>ДО: Кричала на дитину за кожну дрібницю.<br />ПІСЛЯ: Через тиждень донька сказала: «мамо, ти стала добріша».</p>
-            <p className={styles.testimonialAuthor}>Олена, 29, Львів</p>
-          </div>
-          <div className={styles.testimonialCard}>
-            <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
-            <p className={styles.testimonialText}>ДО: 10 хвилин ранком здавались розкішшю.<br />ПІСЛЯ: Тепер це моя рутина. Як зуби почистити.</p>
-            <p className={styles.testimonialAuthor}>Ірина, 41, Одеса</p>
-          </div>
-        </div>
+
         <button className={styles.continueButton} onClick={handleContinue}>
-          <span>Продовжити</span>
+          <span>Далі</span>
           <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
             <path d="M5 12h14"></path>
             <path d="M12 5l7 7-7 7"></path>
@@ -105,5 +100,5 @@ const InfoPageSolution: React.FC<InfoPageSolutionProps> = ({ onContinue }) => {
   );
 };
 
-export default InfoPageSolution;
+export default InfoPageStep2Feedback;
 

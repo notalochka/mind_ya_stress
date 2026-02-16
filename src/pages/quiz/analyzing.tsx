@@ -14,7 +14,7 @@ const Analyzing: NextPage = () => {
   const [check1Status, setCheck1Status] = useState<CheckStatus>('loading');
   const [check2Status, setCheck2Status] = useState<CheckStatus>('loading');
   const [check3Status, setCheck3Status] = useState<CheckStatus>('loading');
-
+  const [check4Status, setCheck4Status] = useState<CheckStatus>('loading');
   // Встановлюємо темну тему для хедера
   useEffect(() => {
     // Встановлюємо темну тему: темний фон (#1a1a1a) та білий логотип
@@ -39,7 +39,7 @@ const Analyzing: NextPage = () => {
     const initDelay = setTimeout(() => {
       // Анімація прогрес-бару протягом 9 секунд (0% -> 100%)
       const startTime = Date.now();
-      const duration = 9000; // 9 секунд
+      const duration = 10000; // 10 секунд
       const targetProgress = 100;
 
       const updateProgress = () => {
@@ -64,17 +64,21 @@ const Analyzing: NextPage = () => {
     // Пункт 1: Замінюємо спінер на галочку через 3 секунди
     const check1CompleteTimer = setTimeout(() => {
       setCheck1Status('completed');
-    }, 3050);
+    }, 2500);
 
     // Пункт 2: Замінюємо спінер на галочку через 6 секунд
     const check2CompleteTimer = setTimeout(() => {
       setCheck2Status('completed');
-    }, 6050);
+    }, 5000);
 
     // Пункт 3: Замінюємо спінер на галочку через 9 секунд
     const check3CompleteTimer = setTimeout(() => {
       setCheck3Status('completed');
-    }, 9050);
+    }, 7500);
+
+    const check4CompleteTimer = setTimeout(() => {
+      setCheck4Status('completed');
+    }, 10000);
 
     return () => {
       clearTimeout(initDelay);
@@ -84,6 +88,7 @@ const Analyzing: NextPage = () => {
       clearTimeout(check1CompleteTimer);
       clearTimeout(check2CompleteTimer);
       clearTimeout(check3CompleteTimer);
+      clearTimeout(check4CompleteTimer);
     };
   }, [router]);
 
@@ -137,14 +142,14 @@ const Analyzing: NextPage = () => {
                 <span className={styles.checkLabel}>📊 Рівень стресу</span>
                 {check1Status === 'loading' && (
                   <span className={styles.checkStatus}>
-                    Визначаємо<span className={styles.dots}>
+                    Визначаємо ступінь виснаження<span className={styles.dots}>
                       <span className={styles.dot}>.</span>
                       <span className={styles.dot}>.</span>
                       <span className={styles.dot}>.</span>
                     </span>
                   </span>
                 )}
-                {check1Status === 'completed' && <span className={styles.checkStatus}>Визначено</span>}
+                {check1Status === 'completed' && <span className={styles.checkStatus}>Визначено ступінь виснаження</span>}
               </div>
             </div>
 
@@ -166,14 +171,14 @@ const Analyzing: NextPage = () => {
                 <span className={styles.checkLabel}>📈 Вплив на життя</span>
                 {check2Status === 'loading' && (
                   <span className={styles.checkStatus}>
-                    Аналізуємо<span className={styles.dots}>
+                    Оцінюємо наслідки<span className={styles.dots}>
                       <span className={styles.dot}>.</span>
                       <span className={styles.dot}>.</span>
                       <span className={styles.dot}>.</span>
                     </span>
                   </span>
                 )}
-                {check2Status === 'completed' && <span className={styles.checkStatus}>Проаналізовано</span>}
+                {check2Status === 'completed' && <span className={styles.checkStatus}>Проаналізовано наслідки</span>}
               </div>
             </div>
 
@@ -192,20 +197,50 @@ const Analyzing: NextPage = () => {
                 )}
               </div>
               <div className={styles.checkContent}>
-                <span className={styles.checkLabel}>🎯 Персональні рекомендації</span>
+                <span className={styles.checkLabel}>💊 Що не спрацювало</span>
                 {check3Status === 'loading' && (
                   <span className={styles.checkStatus}>
-                    Формуємо<span className={styles.dots}>
+                    Підбираємо інший підхід<span className={styles.dots}>
                       <span className={styles.dot}>.</span>
                       <span className={styles.dot}>.</span>
                       <span className={styles.dot}>.</span>
                     </span>
                   </span>
                 )}
-                {check3Status === 'completed' && <span className={styles.checkStatus}>Сформовано</span>}
+                {check3Status === 'completed' && <span className={styles.checkStatus}>Підібрано інший підхід</span>}
+              </div>
+            </div>
+
+            {/* Пункт 4: Персональні рекомендації */}
+            <div className={styles.checkItem}>
+              <div className={styles.checkIcon}>
+                {check4Status === 'loading' && (
+                  <svg className={styles.spinner} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <circle className={styles.spinnerCircle} cx="10" cy="10" r="8" stroke="currentColor" strokeWidth="2" strokeLinecap="round" fill="none"/>
+                  </svg>
+                )}
+                {check4Status === 'completed' && (
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
+                  </svg>
+                )}
+              </div>
+              <div className={styles.checkContent}>
+                <span className={styles.checkLabel}>🎯 Персональні рекомендації</span>
+                {check4Status === 'loading' && (
+                  <span className={styles.checkStatus}>
+                    Формуємо план<span className={styles.dots}>
+                      <span className={styles.dot}>.</span>
+                      <span className={styles.dot}>.</span>
+                      <span className={styles.dot}>.</span>
+                    </span>
+                  </span>
+                )}
+                {check4Status === 'completed' && <span className={styles.checkStatus}>Сформовано план</span>}
               </div>
             </div>
           </div>
+
 
           {/* Роздільник */}
           <div className={styles.divider}></div>
