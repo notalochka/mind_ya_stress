@@ -115,6 +115,7 @@
   align-items: center;
   position: relative;
   -webkit-mask-image: radial-gradient(ellipse 65% 50% at center, black 60%, transparent 100%);
+  mask-image: radial-gradient(ellipse 65% 50% at center, black 60%, transparent 100%);
 }
 
 .researchImage {
@@ -122,7 +123,6 @@
   height: auto;
   border-radius: 12px;
   object-fit: contain;
-  filter: blur(0.5px);
 }
 
 .continueButton {

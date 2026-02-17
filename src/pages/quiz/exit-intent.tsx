@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import type { NextPage } from 'next';
 import Head from 'next/head';
 import { useRouter } from 'next/router';
@@ -9,13 +9,20 @@ import styles from './exit-intent.module.css';
 const ExitIntent: NextPage = () => {
   const router = useRouter();
 
+  // Прокручуємо сторінку вгору при завантаженні
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const handleTry = () => {
     // Перехід на сторінку оплати (поки що на plan-ready)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     router.push('/quiz/plan-ready#pricing-section');
   };
 
   const handleClose = () => {
     // Закрити сторінку або повернутися назад
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     if (window.history.length > 1) {
       router.back();
     } else {

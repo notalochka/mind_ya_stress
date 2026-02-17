@@ -80,6 +80,11 @@ const PlanReady: NextPage = () => {
     return () => clearInterval(timer);
   }, []);
 
+  // Прокручуємо сторінку вгору при завантаженні
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const formatTime = (minutes: number, seconds: number): string => {
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
@@ -98,6 +103,7 @@ const PlanReady: NextPage = () => {
     }
   };
   const handlePurchase = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     router.push('/quiz/exit-intent');
   };
 

@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useRouter } from 'next/router';
 import Image from 'next/image';
 import styles from './InfoPageSolution.module.css';
@@ -12,7 +12,13 @@ const InfoPageSolution: React.FC<InfoPageSolutionProps> = ({ onContinue }) => {
   const { step } = router.query;
   const currentStepNumber = step ? parseInt(step as string, 10) : 1;
 
+  // Прокручуємо сторінку вгору при монтуванні компонента
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const handleContinue = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     if (onContinue) {
       onContinue();
     } else {

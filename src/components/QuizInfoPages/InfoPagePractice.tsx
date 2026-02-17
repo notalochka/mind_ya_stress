@@ -18,7 +18,13 @@ const InfoPagePractice: React.FC<InfoPagePracticeProps> = ({ onContinue }) => {
   const [step2Status, setStep2Status] = useState<'waiting' | 'active' | 'completed'>('waiting');
   const [step3Status, setStep3Status] = useState<'waiting' | 'active' | 'completed'>('waiting');
 
+  // Прокручуємо сторінку вгору при монтуванні компонента
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, []);
+
   const handleContinue = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     if (onContinue) {
       onContinue();
     } else {

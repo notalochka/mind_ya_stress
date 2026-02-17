@@ -151,6 +151,11 @@ const Quiz: NextPage = () => {
     }
   }, [currentStep]);
 
+  // Прокручуємо сторінку вгору при зміні кроку
+  useEffect(() => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+  }, [currentStepNumber]);
+
 
   const handleNext = () => {
     if (currentStep?.type === 'question' && selectedOption !== null) {
@@ -179,9 +184,11 @@ const Quiz: NextPage = () => {
 
     // Переходимо на наступний крок
     if (currentStepNumber < totalSteps) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       router.push(`/quiz?step=${currentStepNumber + 1}`, undefined, { shallow: true });
     } else {
       // Завершення тесту - перехід на сторінку аналізу
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       router.push('/quiz/analyzing');
     }
   };
@@ -198,9 +205,11 @@ const Quiz: NextPage = () => {
 
   const handleBack = () => {
     if (currentStepNumber > 1) {
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       router.push(`/quiz?step=${currentStepNumber - 1}`, undefined, { shallow: true });
     } else {
       // Якщо це перший крок, повертаємося на головну
+      window.scrollTo({ top: 0, behavior: 'smooth' });
       router.push('/');
     }
   };

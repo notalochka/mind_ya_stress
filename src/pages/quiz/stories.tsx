@@ -12,6 +12,9 @@ const Stories: NextPage = () => {
   const [visibleStories, setVisibleStories] = useState(3);
 
   useEffect(() => {
+    // Прокручуємо сторінку вгору при завантаженні
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     // Встановлюємо світлу тему для хедера
     document.documentElement.style.setProperty('--theme-header-bg', '#fff');
     document.documentElement.style.setProperty('--logo-color', 'var(--color-primary)');
@@ -27,6 +30,7 @@ const Stories: NextPage = () => {
   }, []);
 
   const handleTryClick = () => {
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     router.push('/quiz/plan-ready');
   };
 

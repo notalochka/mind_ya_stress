@@ -14,6 +14,9 @@ const Result: NextPage = () => {
   const [userAge, setUserAge] = useState<string>('');
 
   useEffect(() => {
+    // Прокручуємо сторінку вгору при завантаженні
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     // Встановлюємо світлу тему для хедера
     document.documentElement.style.setProperty('--theme-header-bg', '#fff');
     document.documentElement.style.setProperty('--logo-color', 'var(--color-primary)');
@@ -128,7 +131,10 @@ const Result: NextPage = () => {
             </div>
             <button 
               className={styles.understandButton}
-              onClick={() => router.push('/quiz/stories')}
+              onClick={() => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+                router.push('/quiz/stories');
+              }}
             >
               <span>Подивитись мій план</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">

@@ -27,6 +27,9 @@ const Analyzing: NextPage = () => {
 
   // Встановлюємо темну тему для хедера
   useEffect(() => {
+    // Прокручуємо сторінку вгору при завантаженні
+    window.scrollTo({ top: 0, behavior: 'smooth' });
+
     // Встановлюємо темну тему: темний фон (#1a1a1a) та білий логотип
     document.documentElement.style.setProperty('--theme-header-bg', '#1a1a1a');
     document.documentElement.style.setProperty('--logo-color', '#ffffff');
@@ -126,6 +129,7 @@ const Analyzing: NextPage = () => {
     });
   
     // Одразу переходимо на наступну сторінку (оптимістичний UI)
+    window.scrollTo({ top: 0, behavior: 'smooth' });
     router.push('/quiz/result');
   };
 
