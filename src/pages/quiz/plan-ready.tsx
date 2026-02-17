@@ -14,6 +14,7 @@ const PlanReady: NextPage = () => {
   const [isHeaderVisible, setIsHeaderVisible] = useState(true);
   const [discountTimeLeft, setDiscountTimeLeft] = useState({ minutes: 10, seconds: 0 });
   const [isDiscountBannerExpired, setIsDiscountBannerExpired] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   // Таймер знижки для sticky header
   useEffect(() => {
@@ -41,11 +42,6 @@ const PlanReady: NextPage = () => {
         const rect = pricingSection.getBoundingClientRect();
         const windowHeight = window.innerHeight;
         
-        // Перевіряємо, чи pricingSection видимий у viewport
-        // Елемент вважається видимим, якщо:
-        // - його верхня частина вище нижньої межі viewport (rect.top < windowHeight)
-        // - і нижня частина нижче верхньої межі viewport (rect.bottom > 0)
-        // - і хоча б частина елемента видима (rect.top < windowHeight && rect.bottom > 0)
         const isPricingSectionVisible = 
           rect.top >= 0 && 
           rect.top < windowHeight && 
@@ -237,7 +233,7 @@ const PlanReady: NextPage = () => {
             </div>
           ) : (
             <div className={styles.discountText}>
-              🔥 Знижка 50% закінчується через: <span className={styles.timer}>{formatTime(timeLeft.minutes, timeLeft.seconds)}</span>
+              🔥 Знижка 70% закінчується через: <span className={styles.timer}>{formatTime(timeLeft.minutes, timeLeft.seconds)}</span>
             </div>
           )}
           <button className={styles.getPlanButton} onClick={handleGetPlan}>
@@ -248,8 +244,11 @@ const PlanReady: NextPage = () => {
 
       <main className={styles.main}>
         <div className={styles.container}>
-          <h1 className={styles.title}>Ваш персональний план готовий!</h1>
-          
+          <h1 className={styles.title}>Твій персональний план готовий!</h1>
+
+          <p className={styles.description}>
+          На основі аналізу твоїх відповідей ми підібрали програму саме для тебе.
+          </p>
           <div className={styles.imageContainer}>
             <Image
               src="/beforeafter.jpg"
@@ -263,74 +262,70 @@ const PlanReady: NextPage = () => {
           </div>
 
           <div className={styles.featuresSection}>
-            <h2 className={styles.featuresTitle}>Повний доступ на 2 дні:</h2>
+            <h2 className={styles.featuresTitle}>Що всередині твого 3-денного плану:</h2>
             <ul className={styles.featuresList}>
               <li className={styles.featureItem}>
                 <svg className={styles.checkIcon} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span>Аудіо-практики для зняття напруги</span>
+                <span>Аудіо-практики для зняття напруги → вмикаєш, слухаєш, тіло розслабляється само</span>
               </li>
               <li className={styles.featureItem}>
                 <svg className={styles.checkIcon} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span>Техніка "Скидання напруги за 60 секунд"</span>
+                <span>Техніка «60 секунд» для моментів, коли накриває → працює навіть на роботі — ніхто не помітить</span>
               </li>
               <li className={styles.featureItem}>
                 <svg className={styles.checkIcon} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span>Техніка "Стоп-тривога" для панічних моментів</span>
+                <span>«Стоп-тривога» для панічних моментів → замість паніки — контроль за одну хвилину</span>
               </li>
               <li className={styles.featureItem}>
                 <svg className={styles.checkIcon} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span>Техніка "Заземлення" коли накриває після новин</span>
+                <span>Практика глибокого сну → засинаєш швидше, прокидаєшся виспаною</span>
               </li>
               <li className={styles.featureItem}>
                 <svg className={styles.checkIcon} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span>Практика глибокого сну</span>
+                <span>SOS-протокол для екстрених ситуацій → сирена, новини, зрив — чіткий алгоритм що робити</span>
               </li>
               <li className={styles.featureItem}>
                 <svg className={styles.checkIcon} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span>SOS-протокол для екстрених ситуацій</span>
+                <span>Telegram-бот з підтримкою → нагадує, мотивує, веде по програмі щодня</span>
               </li>
               <li className={styles.featureItem}>
                 <svg className={styles.checkIcon} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span>Telegram-бот з підтримкою</span>
+                <span>Працює без світла та інтернету → завантажуєш один раз — доступ назавжди</span>
               </li>
-              <li className={styles.featureItem}>
-                <svg className={styles.checkIcon} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
-                  <path d="M16.6667 5L7.50004 14.1667L3.33337 10" stroke="currentColor" strokeWidth="2.5" strokeLinecap="round" strokeLinejoin="round"/>
-                </svg>
-                <span>Працює без світла та інтернету</span>
-              </li>
+              
             </ul>
+          </div>
+
+          <div className={styles.howItWorksSection}>
+            <h2 className={styles.howItWorksTitle}>Як це працює?</h2>
+            <p className={styles.howItWorksText}>
+              Прості техніки по 10 хвилин, які працюють на рівні тіла. Вони знижують кортизол фізично.
+            </p>
+            <p className={styles.howItWorksText}>
+              Програму розробили практикуючі психологи з досвідом роботи з тривожністю та ПТСР.
+            </p>
+            <p className={styles.howItWorksText}>
+              Всі техніки базуються на доказовій психології: дихальні практики, м'язова релаксація, нейро-регуляція.
+            </p>
           </div>
 
           <div className={styles.comparisonSection}>
             <h2 className={styles.comparisonTitle}>Порівняй сама:</h2>
             <div className={styles.comparisonTable}>
-              <div className={styles.comparisonRow}>
-                <div className={styles.comparisonCell}>
-                  <span className={styles.comparisonEmoji}>☕</span>
-                  <span className={styles.comparisonText}>2 кави в кав'ярні</span>
-                </div>
-                <div className={styles.comparisonCell}>
-                  <span className={styles.comparisonPrice}>150 грн</span>
-                </div>
-                <div className={styles.comparisonCell}>
-                  <span className={styles.comparisonResult}>Бадьорість на 2 години</span>
-                </div>
-              </div>
               <div className={styles.comparisonRow}>
                 <div className={styles.comparisonCell}>
                   <span className={styles.comparisonEmoji}>💊</span>
@@ -346,7 +341,7 @@ const PlanReady: NextPage = () => {
               <div className={styles.comparisonRow}>
                 <div className={styles.comparisonCell}>
                   <span className={styles.comparisonEmoji}>🍷</span>
-                  <span className={styles.comparisonText}>Вино "щоб розслабитись"</span>
+                  <span className={styles.comparisonText}>Вино ввечері</span>
                 </div>
                 <div className={styles.comparisonCell}>
                   <span className={styles.comparisonPrice}>200-400 грн</span>
@@ -357,28 +352,54 @@ const PlanReady: NextPage = () => {
               </div>
               <div className={styles.comparisonRow}>
                 <div className={styles.comparisonCell}>
-                  <span className={styles.comparisonEmoji}>🛋</span>
-                  <span className={styles.comparisonText}>1 сесія психолога</span>
+                  <span className={styles.comparisonEmoji}>📱</span>
+                  <span className={styles.comparisonText}>Медитації з Youtube</span>
+                </div>
+                <div className={styles.comparisonCell}>
+                  <span className={styles.comparisonPrice}>0 грн</span>
+                </div>
+                <div className={styles.comparisonCell}>
+                  <span className={styles.comparisonResult}>Не можеш зосередитись — кидаєш</span>
+                </div>
+              </div>
+              <div className={styles.comparisonRow}>
+                <div className={styles.comparisonCell}>
+                  <span className={styles.comparisonEmoji}>🧠</span>
+                  <span className={styles.comparisonText}>Психолог</span>
                 </div>
                 <div className={styles.comparisonCell}>
                   <span className={styles.comparisonPrice}>1200-2500 грн</span>
                 </div>
                 <div className={styles.comparisonCell}>
-                  <span className={styles.comparisonResult}>Добре, але дорого щотижня</span>
+                  <span className={styles.comparisonResult}>Ефективно, але дорого і довго</span>
                 </div>
               </div>
               <div className={`${styles.comparisonRow} ${styles.comparisonRowHighlighted}`}>
                 <div className={styles.comparisonCell}>
-                  <span className={styles.comparisonText}>Mind Я — 2 дні</span>
+                  <span className={styles.comparisonText}>Mind Я — 3 дні</span>
                 </div>
                 <div className={styles.comparisonCell}>
-                  <span className={styles.comparisonPrice}>149 грн</span>
+                  <span className={styles.comparisonPrice}>149 грн (одноразово)</span>
                 </div>
                 <div className={styles.comparisonCell}>
-                  <span className={styles.comparisonResult}>Відчуєш різницю в тілі</span>
+                  <span className={styles.comparisonResult}>Спокій з 1-го дня. Назавжди твоє.</span>
                 </div>
               </div>
             </div>
+          </div>
+
+          <div className={styles.imagineSection}>
+            <h2 className={styles.imagineTitle}>Уяви, як це буде через місяць:</h2>
+            <p className={styles.imagineText}>
+              Ті ж думки, що не дають заснути. <br />
+              Той самий зрив на дитину — і провина після. <br />
+              Те саме виснаження вранці, коли будильник — як вирок.
+            </p>
+            <p className={styles.imagineText}>
+              Ти вже знаєш, що це — хронічний стрес. <br />
+              Тепер ти знаєш, що вихід є. <br />
+              І він коштує менше, ніж дві чашки кави.
+            </p>
           </div>
 
           <div id="pricing-section" className={styles.pricingSection}>
@@ -468,53 +489,180 @@ const PlanReady: NextPage = () => {
               <div className={styles.testimonialCard}>
                 <div className={styles.testimonialHeader}>
                   <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
-                  <span className={styles.testimonialAuthor}>Юлія, 26, Київ</span>
+                  <span className={styles.testimonialAuthor}>Аня, 24, Вінниця</span>
                 </div>
                 <p className={styles.testimonialText}>
-                  На 2-й день вперше за місяці заснула до 12. Думала так не буває.
+                Заснула до 12 — вперше за 4 місяці. Без снодійного, без вина. Просто лягла і — все.
                 </p>
               </div>
 
               <div className={styles.testimonialCard}>
                 <div className={styles.testimonialHeader}>
                   <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
-                  <span className={styles.testimonialAuthor}>Олена, 33, Львів</span>
+                  <span className={styles.testimonialAuthor}>Катерина, 35, Запоріжжя</span>
                 </div>
                 <p className={styles.testimonialText}>
-                  Техніка 60 секунд — тепер роблю щоразу коли сирена. Реально допомагає.
+                Вечір без крику на дітей. Це було так незвично, що чоловік спитав — ти в порядку?
                 </p>
               </div>
 
               <div className={styles.testimonialCard}>
                 <div className={styles.testimonialHeader}>
                   <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
-                  <span className={styles.testimonialAuthor}>Марина, 29, Дніпро</span>
+                  <span className={styles.testimonialAuthor}>Даша, 27, Київ</span>
                 </div>
                 <p className={styles.testimonialText}>
-                  Чоловік на 3-й день спитав: що з тобою сталось? Ти інша.
+                Почала накривати паніка в метро. Зробила техніку 60 секунд — відпустило. Раніше тряслась по 20 хвилин.
                 </p>
               </div>
 
               <div className={styles.testimonialCard}>
                 <div className={styles.testimonialHeader}>
                   <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
-                  <span className={styles.testimonialAuthor}>Ірина, 41, Одеса</span>
+                  <span className={styles.testimonialAuthor}>Тетяна, 38, Харків</span>
                 </div>
                 <p className={styles.testimonialText}>
-                  Працює навіть при блекауті. Роблю при свічках — це моя вечірня рутина.
-                </p>
-              </div>
-
-              <div className={styles.testimonialCard}>
-                <div className={styles.testimonialHeader}>
-                  <div className={styles.stars}>⭐⭐⭐⭐⭐</div>
-                  <span className={styles.testimonialAuthor}>Наталя, 47, Харків</span>
-                </div>
-                <p className={styles.testimonialText}>
-                  Скептик була страшний. Але на 2-й день щось клікнуло. Залишилась.
+                На 3-й день вперше за рік прокинулась без будильника. І не хотілось померти на роботі.
                 </p>
               </div>
             </div>
+          </div>
+
+          <div className={styles.ctaSection}>
+            <p className={styles.ctaText}>
+              Вони всі починали з одного кроку
+            </p>
+            <p className={styles.ctaDetails}>
+              3 дні. 10 хвилин на день. 149 грн
+            </p>
+            <button className={styles.ctaSectionButton} onClick={handleGetPlan}>
+              <span>Отримати свій план</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="M12 5l7 7-7 7"></path>
+              </svg>
+            </button>
+          </div>
+
+          <div className={styles.faqSection}>
+            <h2 className={styles.faqTitle}>Часті питання:</h2>
+            <div className={styles.faqList}>
+              <div className={styles.faqItem}>
+                <button
+                  className={styles.faqQuestion}
+                  onClick={() => setOpenFaqIndex(openFaqIndex === 0 ? null : 0)}
+                >
+                  <span className={styles.faqQuestionText}>
+                    <span className={styles.faqEmoji}>❓</span>
+                    Це медитація?
+                  </span>
+                  <span className={styles.faqIcon}>
+                    {openFaqIndex === 0 ? '−' : '+'}
+                  </span>
+                </button>
+                {openFaqIndex === 0 && (
+                  <div className={styles.faqAnswer}>
+                    Ні. Це аудіо-техніки, які працюють через тіло — дихання, м'язова релаксація, нейро-регуляція. Не потрібно «очищати розум» або сидіти в тиші. Просто вмикаєш і слухаєш.
+                  </div>
+                )}
+              </div>
+
+              <div className={styles.faqItem}>
+                <button
+                  className={styles.faqQuestion}
+                  onClick={() => setOpenFaqIndex(openFaqIndex === 1 ? null : 1)}
+                >
+                  <span className={styles.faqQuestionText}>
+                    <span className={styles.faqEmoji}>❓</span>
+                    А якщо в мене немає 10 хвилин?
+                  </span>
+                  <span className={styles.faqIcon}>
+                    {openFaqIndex === 1 ? '−' : '+'}
+                  </span>
+                </button>
+                {openFaqIndex === 1 && (
+                  <div className={styles.faqAnswer}>
+                    Техніка «60 секунд» працює буквально за хвилину. А повна практика — 10 хв перед сном. Це менше, ніж скролити стрічку перед сном.
+                  </div>
+                )}
+              </div>
+
+              <div className={styles.faqItem}>
+                <button
+                  className={styles.faqQuestion}
+                  onClick={() => setOpenFaqIndex(openFaqIndex === 2 ? null : 2)}
+                >
+                  <span className={styles.faqQuestionText}>
+                    <span className={styles.faqEmoji}>❓</span>
+                    Що буде після оплати?
+                  </span>
+                  <span className={styles.faqIcon}>
+                    {openFaqIndex === 2 ? '−' : '+'}
+                  </span>
+                </button>
+                {openFaqIndex === 2 && (
+                  <div className={styles.faqAnswer}>
+                    Ти одразу отримаєш посилання на Telegram-бот. Натискаєш /start — і починаєш першу практику протягом 5 хвилин.
+                  </div>
+                )}
+              </div>
+
+              <div className={styles.faqItem}>
+                <button
+                  className={styles.faqQuestion}
+                  onClick={() => setOpenFaqIndex(openFaqIndex === 3 ? null : 3)}
+                >
+                  <span className={styles.faqQuestionText}>
+                    <span className={styles.faqEmoji}>❓</span>
+                    Це працює при тривозі від війни?
+                  </span>
+                  <span className={styles.faqIcon}>
+                    {openFaqIndex === 3 ? '−' : '+'}
+                  </span>
+                </button>
+                {openFaqIndex === 3 && (
+                  <div className={styles.faqAnswer}>
+                    Так. Техніки розроблені з урахуванням ПТСР-симптомів. SOS-протокол — спеціально для сирен, новин і блекаутів.
+                  </div>
+                )}
+              </div>
+
+              <div className={styles.faqItem}>
+                <button
+                  className={styles.faqQuestion}
+                  onClick={() => setOpenFaqIndex(openFaqIndex === 4 ? null : 4)}
+                >
+                  <span className={styles.faqQuestionText}>
+                    <span className={styles.faqEmoji}>❓</span>
+                    Потрібен інтернет?
+                  </span>
+                  <span className={styles.faqIcon}>
+                    {openFaqIndex === 4 ? '−' : '+'}
+                  </span>
+                </button>
+                {openFaqIndex === 4 && (
+                  <div className={styles.faqAnswer}>
+                    Тільки щоб завантажити практики. Далі працює без світла і зв'язку — файли залишаються в телефоні.
+                  </div>
+                )}
+              </div>
+            </div>
+          </div>
+          <div className={styles.ctaSection}>
+            <p className={styles.ctaText}>
+            Все ще думаєш?
+            </p>
+            <p className={styles.ctaDetails}>
+            <strong>78% жінок</strong> відчули різницю вже на <strong>3-й день</strong>
+            </p>
+            <p className={styles.ctaDetails}>Тобі не потрібно вірити. <br />Тобі потрібно просто спробувати.</p>
+            <button className={styles.ctaSectionButton} onClick={handleGetPlan}>
+              <span>Спробувати за 149 грн</span>
+              <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
+                <path d="M5 12h14"></path>
+                <path d="M12 5l7 7-7 7"></path>
+              </svg>
+            </button>
           </div>
 
           <div className={styles.guaranteeSection}>

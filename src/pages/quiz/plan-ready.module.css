@@ -111,6 +111,13 @@
   max-width: 800px;
 }
 
+.description {
+  font-size: 20px;
+  font-weight: 600;
+  color: #000;
+  text-align: center;
+  margin-bottom: 20px;
+}
 .imageContainer {
   width: 100%;
   max-width: 500px;
@@ -199,6 +206,9 @@
   .title {
     font-size: 24px;
   }
+  .description {
+    font-size: 16px;
+  }
 
   .imageContainer {
     max-width: 100%;
@@ -222,6 +232,37 @@
     width: 18px;
     height: 18px;
   }
+}
+
+.howItWorksSection {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 50px;
+  padding: 40px 30px;
+  background-color: #f9fafb;
+  border-radius: 12px;
+  border: 1px solid #e5e7eb;
+}
+
+.howItWorksTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+
+.howItWorksText {
+  font-size: 18px;
+  line-height: 1.6;
+  color: #4a5568;
+  text-align: center;
+  margin-bottom: 16px;
+}
+
+.howItWorksText:last-child {
+  margin-bottom: 0;
 }
 
 .comparisonSection {
@@ -327,7 +368,52 @@
   font-weight: 600;
 }
 
+.imagineSection {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 50px;
+  padding: 40px 30px;
+  background-color: #f5f5f5;
+  border-left: 4px solid #ff6b35;
+  border-radius: 8px;
+}
+
+.imagineTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  margin-bottom: 24px;
+  line-height: 1.3;
+}
+.imagineText {
+  font-size: 18px;
+  line-height: 1.8;
+  color: #1a1a1a;
+  margin-bottom: 16px;
+  padding-left: 20px;
+}
+
+.imagineText:last-child {
+  margin-bottom: 0;
+}
+
 @media (max-width: 768px) {
+  .howItWorksSection {
+    margin-top: 40px;
+    padding: 30px 20px;
+  }
+
+  .howItWorksTitle {
+    font-size: 22px;
+    margin-bottom: 20px;
+  }
+
+  .howItWorksText {
+    font-size: 16px;
+    margin-bottom: 14px;
+  }
+
   .comparisonSection {
     margin-top: 40px;
   }
@@ -337,13 +423,30 @@
     margin-bottom: 10px;
   }
 
+  .imagineSection {
+    margin-top: 40px;
+    padding: 30px 20px;
+    border-left-width: 3px;
+  }
+  .imagineTitle {
+    font-size: 18px;
+    margin-bottom: 10px;
+  }
+
+  .imagineText {
+    font-size: 14px;
+    line-height: 1.7;
+    margin-bottom: 10px;
+    padding-left: 10px;
+  }
+
   .comparisonRow {
     gap: 0;
   }
 
   .comparisonCell {
     padding: 12px 16px;
-    font-size: 14px;
+    font-size: 12px;
     border-right: none;
     border-bottom: 2px solid #e5e7eb;
     justify-content: flex-start;
@@ -804,6 +907,180 @@
   transform: translateY(0);
 }
 
+.ctaSection {
+  width: 100%;
+  max-width: 900px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  margin-top: 50px;
+  padding: 40px;
+  background-color: #f1f3f9;
+  border-radius: 12px;
+}
+
+.ctaText {
+  font-size: 24px;
+  font-weight: 700;
+  color: #000;
+  margin-bottom: 16px;
+  line-height: 1.4;
+}
+
+.ctaDetails {
+  font-size: 20px;
+  font-weight: 600;
+  color: #4a5568;
+  margin-bottom: 30px;
+  line-height: 1.5;
+}
+.ctaDetails strong {
+  font-size: 20px;
+  font-weight: 800;
+  color: #059669;
+  line-height: 1.5;
+}
+
+.ctaSectionButton {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  background-color: #10b981;
+  color: #fff;
+  border: none;
+  border-radius: 12px;
+  padding: 18px 40px;
+  font-size: 20px;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 4px 16px rgba(16, 185, 129, 0.3);
+  width: 100%;
+  max-width: 500px;
+}
+
+.ctaSectionButton svg {
+  flex-shrink: 0;
+  width: 24px;
+  height: 24px;
+  stroke: currentColor;
+  transition: transform 0.3s ease;
+}
+
+.ctaSectionButton:hover {
+  background-color: #059669;
+  transform: translateY(-2px);
+  box-shadow: 0 6px 20px rgba(16, 185, 129, 0.4);
+}
+
+.ctaSectionButton:hover svg {
+  transform: translateX(4px);
+}
+
+.ctaSectionButton:active {
+  transform: translateY(0);
+}
+
+.faqSection {
+  width: 100%;
+  max-width: 800px;
+  margin-top: 60px;
+  margin-bottom: 40px;
+}
+
+.faqTitle {
+  font-size: 28px;
+  font-weight: 700;
+  color: #000;
+  text-align: center;
+  margin-bottom: 30px;
+  line-height: 1.3;
+}
+
+.faqList {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.faqItem {
+  background-color: #fff;
+  border: 1px solid #e5e7eb;
+  border-radius: 12px;
+  overflow: hidden;
+  transition: all 0.3s ease;
+}
+
+.faqItem:hover {
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+}
+
+.faqQuestion {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 20px 24px;
+  background-color: transparent;
+  border: none;
+  cursor: pointer;
+  text-align: left;
+  transition: background-color 0.2s ease;
+}
+
+.faqQuestion:hover {
+  background-color: #f9fafb;
+}
+
+.faqQuestionText {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 18px;
+  font-weight: 600;
+  color: #1a1a1a;
+  flex: 1;
+}
+
+.faqEmoji {
+  font-size: 20px;
+  flex-shrink: 0;
+}
+
+.faqIcon {
+  font-size: 24px;
+  font-weight: 700;
+  color: #5671A6;
+  width: 30px;
+  height: 30px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+  transition: transform 0.3s ease;
+}
+
+.faqAnswer {
+  padding: 0 24px 20px 24px;
+  font-size: 16px;
+  line-height: 1.7;
+  color: #4a5568;
+  animation: slideDown 0.3s ease;
+}
+
+@keyframes slideDown {
+  from {
+    opacity: 0;
+    max-height: 0;
+  }
+  to {
+    opacity: 1;
+    max-height: 500px;
+  }
+}
+
 @media (max-width: 768px) {
   .testimonialsSection {
     margin-top: 40px;
@@ -815,7 +1092,7 @@
   }
 
   .testimonialsTitle {
-    font-size: 22px;
+    font-size: 18px;
     margin-bottom: 24px;
   }
 
@@ -824,10 +1101,64 @@
   }
 
   .testimonialTitle {
-    font-size: 16px;
+    font-size: 14px;
   }
 
   .testimonialText {
+    font-size: 12px;
+  }
+
+  .ctaSection {
+    margin-top: 20px;
+    padding: 30px 20px;
+  }
+
+  .ctaText {
+    font-size: 18px;
+    margin-bottom: 12px;
+  }
+
+  .ctaDetails {
+    font-size: 16px;
+    margin-bottom: 24px;
+  }
+
+  .ctaSectionButton {
+    padding: 12px 20px;
+    font-size: 16px;
+  }
+
+  .faqSection {
+    margin-top: 40px;
+    margin-bottom: 30px;
+  }
+
+  .faqTitle {
+    font-size: 22px;
+    margin-bottom: 24px;
+  }
+
+  .faqQuestion {
+    padding: 16px 20px;
+  }
+
+  .faqQuestionText {
+    font-size: 16px;
+    gap: 10px;
+  }
+
+  .faqEmoji {
+    font-size: 18px;
+  }
+
+  .faqIcon {
+    font-size: 20px;
+    width: 26px;
+    height: 26px;
+  }
+
+  .faqAnswer {
+    padding: 0 20px 16px 20px;
     font-size: 15px;
   }
 
@@ -857,7 +1188,8 @@
   }
 
   .paymentLogo {
-    max-width: 100%;
+    max-width: 250px;
+    height: auto;
   }
 
   .fixedPayBar {
