@@ -15,19 +15,18 @@ const ExitIntent: NextPage = () => {
   }, []);
 
   const handleTry = () => {
-    // Перехід на сторінку оплати (поки що на plan-ready)
+    // Встановлюємо прапорець для зниженої ціни
+    sessionStorage.setItem('discountPrice', '99');
+    sessionStorage.setItem('discountPercent', '80');
+    // Перехід на сторінку оплати зі знижкою
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    router.push('/quiz/plan-ready#pricing-section');
+    router.push('/quiz/plan-ready?discount=true#pricing-section');
   };
 
   const handleClose = () => {
-    // Закрити сторінку або повернутися назад
+    // Перенаправляємо на головну сторінку
     window.scrollTo({ top: 0, behavior: 'smooth' });
-    if (window.history.length > 1) {
-      router.back();
-    } else {
-      router.push('/');
-    }
+    router.push('/');
   };
 
   return (
@@ -68,7 +67,7 @@ const ExitIntent: NextPage = () => {
                 <svg className={styles.arrowIcon} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
                   <path d="M5 10H15M15 10L11 6M15 10L11 14" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"/>
                 </svg>
-                <span>2 дні — це 20 хвилин твого часу</span>
+                <span>3 дні — це ~20 хвилин твого часу</span>
               </li>
               <li className={styles.listItem}>
                 <svg className={styles.arrowIcon} width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
@@ -86,7 +85,7 @@ const ExitIntent: NextPage = () => {
             
             <div className={styles.buttons}>
               <button className={styles.primaryButton} onClick={handleTry}>
-                Добре, спробую за 149 грн
+                Добре, спробую за 99 грн
               </button>
               <button className={styles.secondaryButton} onClick={handleClose}>
                 Ні, дякую — закрити

@@ -15,6 +15,9 @@ const PlanReady: NextPage = () => {
   const [discountTimeLeft, setDiscountTimeLeft] = useState({ minutes: 10, seconds: 0 });
   const [isDiscountBannerExpired, setIsDiscountBannerExpired] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
+  const [price, setPrice] = useState(149);
+  const [discountPercent, setDiscountPercent] = useState(70);
+  const [isPaymentLoading, setIsPaymentLoading] = useState(false);
 
   // Таймер знижки для sticky header
   useEffect(() => {
@@ -85,6 +88,40 @@ const PlanReady: NextPage = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   }, []);
 
+  // Перевірка динамічної ціни та знижки з sessionStorage
+  useEffect(() => {
+    if (typeof window !== 'undefined') {
+      const discountPrice = sessionStorage.getItem('discountPrice');
+      const discountPercentValue = sessionStorage.getItem('discountPercent');
+      
+      if (discountPrice) {
+        setPrice(parseInt(discountPrice, 10));
+      }
+      if (discountPercentValue) {
+        setDiscountPercent(parseInt(discountPercentValue, 10));
+      }
+
+      // Перевірка чи користувач повернувся з оплати без оплати
+      // Перевіряємо при завантаженні сторінки та при зміні query параметрів
+      const paymentAttempted = sessionStorage.getItem('paymentAttempted');
+      const transactionStatus = router.query.transactionStatus as string | undefined;
+      
+      if (paymentAttempted === 'true') {
+        // Якщо є успішний статус - очищаємо маркер
+        if (transactionStatus === 'approved' || transactionStatus === 'inprocessing') {
+          sessionStorage.removeItem('paymentAttempted');
+        } else if (!transactionStatus || transactionStatus === 'declined' || transactionStatus === 'refunded') {
+          // Якщо оплата не пройшла або користувач просто повернувся - перенаправляємо на exit-intent
+          sessionStorage.removeItem('paymentAttempted');
+          // Невелика затримка щоб уникнути зациклення
+          setTimeout(() => {
+            router.push('/quiz/exit-intent');
+          }, 100);
+        }
+      }
+    }
+  }, [router.query, router]);
+
   const formatTime = (minutes: number, seconds: number): string => {
     return `${minutes.toString().padStart(2, '0')}:${seconds.toString().padStart(2, '0')}`;
   };
@@ -102,9 +139,44 @@ const PlanReady: NextPage = () => {
       });
     }
   };
-  const handlePurchase = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
-    router.push('/quiz/exit-intent');
+  const handlePurchase = async () => {
+    setIsPaymentLoading(true);
+    try {
+      // Відстежуємо перехід на оплату
+      sessionStorage.setItem('paymentAttempted', 'true');
+      
+      const res = await fetch('/api/wayforpay/create-payment', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ price }),
+      });
+      const data = await res.json();
+      if (!data.success || !data.url || !data.formData) {
+        throw new Error(data.error || 'Помилка створення платежу');
+      }
+      const form = document.createElement('form');
+      form.method = 'POST';
+      form.action = data.url;
+      form.style.display = 'none';
+      for (const [key, value] of Object.entries(data.formData)) {
+        const values = Array.isArray(value) ? value : [value];
+        const fieldName = Array.isArray(value) ? `${key}[]` : key;
+        for (const v of values) {
+          const input = document.createElement('input');
+          input.name = fieldName;
+          input.value = String(v);
+          input.type = 'hidden';
+          form.appendChild(input);
+        }
+      }
+      document.body.appendChild(form);
+      form.submit();
+    } catch (err) {
+      console.error('Payment error:', err);
+      setIsPaymentLoading(false);
+      sessionStorage.removeItem('paymentAttempted');
+      alert('Не вдалося перейти до оплати. Спробуйте пізніше.');
+    }
   };
 
   return (
@@ -239,7 +311,7 @@ const PlanReady: NextPage = () => {
             </div>
           ) : (
             <div className={styles.discountText}>
-              🔥 Знижка 70% закінчується через: <span className={styles.timer}>{formatTime(timeLeft.minutes, timeLeft.seconds)}</span>
+              🔥 Знижка {discountPercent}% закінчується через: <span className={styles.timer}>{formatTime(timeLeft.minutes, timeLeft.seconds)}</span>
             </div>
           )}
           <button className={styles.getPlanButton} onClick={handleGetPlan}>
@@ -385,7 +457,7 @@ const PlanReady: NextPage = () => {
                   <span className={styles.comparisonText}>Mind Я — 3 дні</span>
                 </div>
                 <div className={styles.comparisonCell}>
-                  <span className={styles.comparisonPrice}>149 грн (одноразово)</span>
+                  <span className={styles.comparisonPrice}>{price} грн (одноразово)</span>
                 </div>
                 <div className={styles.comparisonCell}>
                   <span className={styles.comparisonResult}>Спокій з 1-го дня. Назавжди твоє.</span>
@@ -418,17 +490,17 @@ const PlanReady: NextPage = () => {
                     </g>
                   </g>
                 </svg>
-                <span className={styles.bannerDiscountText}>Знижка 70% діє ще: <span className={styles.bannerDiscountTimer}>{formatTime(discountTimeLeft.minutes, discountTimeLeft.seconds)}</span></span>
+                <span className={styles.bannerDiscountText}>Знижка {discountPercent}% діє ще: <span className={styles.bannerDiscountTimer}>{formatTime(discountTimeLeft.minutes, discountTimeLeft.seconds)}</span></span>
               </div>
             )}
 
             <div className={styles.priceContainer}>
               <div className={styles.priceOldContainer}>
-                <span className={styles.priceOld}>499 грн</span>
+                <span className={styles.priceOld}>{Math.round(price / (1 - discountPercent / 100))} грн</span>
                 <span className={styles.priceOldLabel}>звичайна ціна</span>
               </div>
               <div className={styles.priceNewContainer}>
-                <span className={styles.priceNew}>149 грн</span>
+                <span className={styles.priceNew}>{price} грн</span>
                 <span className={styles.priceNewLabel}>сьогодні</span>
               </div>
             </div>
@@ -472,8 +544,8 @@ const PlanReady: NextPage = () => {
               </li>
             </ul>
 
-            <button className={styles.ctaButton} onClick={handlePurchase}>
-              Почати за 149 грн
+            <button className={styles.ctaButton} onClick={handlePurchase} disabled={isPaymentLoading}>
+              {isPaymentLoading ? 'Завантаження...' : `Почати за ${price} грн`}
             </button>
           </div>
 
@@ -539,7 +611,7 @@ const PlanReady: NextPage = () => {
               Вони всі починали з одного кроку
             </p>
             <p className={styles.ctaDetails}>
-              3 дні. 10 хвилин на день. 149 грн
+              3 дні. 10 хвилин на день. {price} грн
             </p>
             <button className={styles.ctaSectionButton} onClick={handleGetPlan}>
               <span>Отримати свій план</span>
@@ -663,7 +735,7 @@ const PlanReady: NextPage = () => {
             </p>
             <p className={styles.ctaDetails}>Тобі не потрібно вірити. <br />Тобі потрібно просто спробувати.</p>
             <button className={styles.ctaSectionButton} onClick={handleGetPlan}>
-              <span>Спробувати за 149 грн</span>
+              <span>Спробувати за {price} грн</span>
               <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="3" strokeLinecap="round" strokeLinejoin="round">
                 <path d="M5 12h14"></path>
                 <path d="M12 5l7 7-7 7"></path>
@@ -686,7 +758,7 @@ const PlanReady: NextPage = () => {
               <div className={styles.guaranteeTextContainer}>
                 <h3 className={styles.guaranteeTitle}>100% гарантія повернення грошей</h3>
                 <p className={styles.guaranteeText}>
-                Якщо за 2 дні не відчуєш жодної різниці — повернемо всі 149 грн. <br />Без питань, без умов. Просто напишіть на mindya.ua@gmail.com
+                Якщо за 2 дні не відчуєш жодної різниці — повернемо всі {price} грн. <br />Без питань, без умов. Просто напишіть на mindya.ua@gmail.com
                 </p>
               </div>
             </div>
