@@ -59,6 +59,15 @@ export function generateMerchantSignature(params: WayForPayPaymentParams): strin
     ...params.productPrice.map((p) => p.toFixed(2)),
   ];
   const dataString = parts.join(';');
+
+  // ДОДАЙТЕ ЦЕ ДЛЯ ДІАГНОСТИКИ
+  console.log('=== Signature Generation Debug ===');
+  console.log('MERCHANT_ACCOUNT:', MERCHANT_ACCOUNT);
+  console.log('MERCHANT_DOMAIN:', MERCHANT_DOMAIN);
+  console.log('MERCHANT_SECRET_KEY length:', MERCHANT_SECRET_KEY?.length || 0);
+  console.log('Data string for signature:', dataString);
+  console.log('==================================');
+  
   return crypto.createHmac('md5', MERCHANT_SECRET_KEY).update(dataString, 'utf8').digest('hex');
 }
 

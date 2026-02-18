@@ -18,6 +18,14 @@ export default async function handler(
   }
 
   try {
+    // ДОДАЙТЕ ЦЕ ДЛЯ ДІАГНОСТИКИ
+    console.log('=== Create Payment Debug ===');
+    console.log('MERCHANT_LOGIN:', process.env.MERCHANT_LOGIN);
+    console.log('MERCHANT_SECRET_KEY exists:', !!process.env.MERCHANT_SECRET_KEY);
+    console.log('MERCHANT_SECRET_KEY length:', process.env.MERCHANT_SECRET_KEY?.length || 0);
+    console.log('NEXT_PUBLIC_APP_URL:', process.env.NEXT_PUBLIC_APP_URL);
+    console.log('Request price:', req.body?.price);
+    console.log('===========================');
     const price = typeof req.body?.price === 'number' ? req.body.price : 149;
     const product: WayForPayProduct = {
       name: PRODUCT_NAME_SHORT,
@@ -25,6 +33,15 @@ export default async function handler(
       count: 1,
     };
     const { url, formData } = getPaymentFormData([product]);
+    // ДОДАЙТЕ ЦЕ ТАКОЖ
+    console.log('Generated payment data:', {
+        merchantAccount: formData.merchantAccount,
+        merchantDomainName: formData.merchantDomainName,
+        merchantSignature: formData.merchantSignature?.substring(0, 20) + '...',
+        amount: formData.amount,
+        orderReference: formData.orderReference,
+      });
+  
 
     const normalizedFormData: Record<string, string | string[]> = {};
     for (const [key, value] of Object.entries(formData)) {
