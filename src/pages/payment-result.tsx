@@ -13,17 +13,37 @@ const PaymentResult: NextPage = () => {
   useEffect(() => {
     if (!router.isReady) return;
 
-    const { transactionStatus } = router.query;
-    const statusStr = String(transactionStatus || '').toLowerCase();
+    // WayForPay може передавати параметри різними способами
+    const { transactionStatus, status, orderStatus, orderReference } = router.query;
+    const statusStr = String(transactionStatus || status || orderStatus || '').toLowerCase();
+
+    // Діагностичне логування
+    console.log('=== Payment Result Page ===');
+    console.log('Router query:', router.query);
+    console.log('URL:', window.location.href);
+    console.log('Transaction status:', transactionStatus);
+    console.log('Status:', status);
+    console.log('Order reference:', orderReference);
+    console.log('==========================');
 
     // Перевіряємо чи був перехід на оплату
     const paymentAttempted = sessionStorage.getItem('paymentAttempted');
     
-    if (statusStr === 'approved' || statusStr === 'inprocessing') {
+    // Додаткова перевірка через URL параметри (якщо WayForPay передає в URL)
+    const urlParams = new URLSearchParams(window.location.search);
+    const urlStatus = urlParams.get('transactionStatus') || urlParams.get('status') || '';
+    const finalStatus = statusStr || urlStatus.toLowerCase();
+    
+    console.log('Final status:', finalStatus);
+    
+    if (finalStatus === 'approved' || finalStatus === 'inprocessing' || finalStatus === 'ok') {
       setStatus('success');
       // Очищаємо маркер спроби оплати
       sessionStorage.removeItem('paymentAttempted');
-      window.location.href = BOT_URL;
+      // Невелика затримка перед перенаправленням
+      setTimeout(() => {
+        window.location.href = BOT_URL;
+      }, 500);
     } else {
       setStatus('failure');
       // Якщо була спроба оплати, але оплата не пройшла - перенаправляємо на exit-intent

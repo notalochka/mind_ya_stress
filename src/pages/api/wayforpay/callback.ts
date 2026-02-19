@@ -23,12 +23,22 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  // Діагностичне логування
+  console.log('=== WayForPay Callback ===');
+  console.log('Method:', req.method);
+  console.log('Headers:', req.headers);
+  console.log('Body type:', typeof req.body);
+  console.log('Body:', req.body);
+  console.log('========================');
+  
   if (req.method !== 'POST') {
+    console.error('WayForPay callback: wrong method', req.method);
     return res.status(405).json({ orderReference: '', status: 'error', time: 0, signature: '' });
   }
 
   try {
     const body = typeof req.body === 'string' ? JSON.parse(req.body) : req.body;
+    console.log('Parsed body:', body);
     const {
       orderReference,
       merchantSignature,
@@ -63,13 +73,25 @@ export default async function handler(
       });
     }
 
+    console.log('WayForPay callback: Transaction status:', transactionStatus);
+    
     if (transactionStatus === 'Approved') {
       // TODO: Зберегти інформацію про успішну оплату (наприклад, в БД або відправити в бот)
-      console.log('WayForPay: Payment approved', {
+      console.log('✅ WayForPay: Payment APPROVED', {
         orderReference,
         amount,
         currency,
         email: body.email,
+        phone: body.phone,
+        authCode,
+        cardPan: cardPan ? `${cardPan.slice(0, 4)}****${cardPan.slice(-4)}` : 'N/A',
+      });
+    } else {
+      console.log('❌ WayForPay: Payment NOT approved', {
+        orderReference,
+        transactionStatus,
+        reasonCode,
+        reason: body.reason,
       });
     }
 

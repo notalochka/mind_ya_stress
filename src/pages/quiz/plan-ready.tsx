@@ -15,7 +15,7 @@ const PlanReady: NextPage = () => {
   const [discountTimeLeft, setDiscountTimeLeft] = useState({ minutes: 10, seconds: 0 });
   const [isDiscountBannerExpired, setIsDiscountBannerExpired] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-  const [price, setPrice] = useState(149);
+  const [price, setPrice] = useState(1);
   const [discountPercent, setDiscountPercent] = useState(70);
   const [isPaymentLoading, setIsPaymentLoading] = useState(false);
 
