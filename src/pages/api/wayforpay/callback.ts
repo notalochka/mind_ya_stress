@@ -102,14 +102,30 @@ export default async function handler(
       });
     }
 
+    // Переконаємося, що всі поля правильно оброблені
+    const cleanAuthCode = authCode || '';
+    const cleanCardPan = cardPan || '';
+    const cleanReasonCode = reasonCode || 0;
+    
+    console.log('=== Callback Data for Signature ===');
+    console.log('orderReference:', orderReference);
+    console.log('amount:', amount, '(type:', typeof amount, ')');
+    console.log('currency:', currency);
+    console.log('authCode:', cleanAuthCode, '(original:', authCode, ')');
+    console.log('cardPan:', cleanCardPan, '(original:', cardPan, ')');
+    console.log('transactionStatus:', transactionStatus);
+    console.log('reasonCode:', cleanReasonCode, '(original:', reasonCode, ')');
+    console.log('merchantSignature:', merchantSignature);
+    console.log('===================================');
+
     const isValid = verifyCallbackSignature(
       orderReference,
       amount,
       currency,
-      authCode || '',
-      cardPan || '',
+      cleanAuthCode,
+      cleanCardPan,
       transactionStatus,
-      reasonCode || 0,
+      cleanReasonCode,
       merchantSignature
     );
 

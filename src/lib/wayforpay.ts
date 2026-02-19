@@ -91,16 +91,29 @@ export function verifyCallbackSignature(
     orderReference,
     amount.toFixed(2),
     currency,
-    authCode,
-    cardPan,
+    authCode || '',
+    cardPan || '',
     transactionStatus,
     reasonCode.toString(),
   ];
   const dataString = parts.join(';');
+  
+  // Діагностичне логування
+  console.log('=== Signature Verification ===');
+  console.log('MERCHANT_ACCOUNT:', MERCHANT_ACCOUNT);
+  console.log('MERCHANT_SECRET_KEY length:', MERCHANT_SECRET_KEY?.length || 0);
+  console.log('Data string:', dataString);
+  console.log('Received signature:', receivedSignature);
+  
   const expectedSignature = crypto
     .createHmac('md5', MERCHANT_SECRET_KEY)
     .update(dataString, 'utf8')
     .digest('hex');
+  
+  console.log('Expected signature:', expectedSignature);
+  console.log('Signatures match:', expectedSignature === receivedSignature);
+  console.log('=============================');
+  
   return expectedSignature === receivedSignature;
 }
 
