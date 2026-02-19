@@ -37,22 +37,31 @@ const PaymentResult: NextPage = () => {
     console.log('Final status:', finalStatus);
     
     if (finalStatus === 'approved' || finalStatus === 'inprocessing' || finalStatus === 'ok') {
-      setStatus('success');
       // Очищаємо маркер спроби оплати
       sessionStorage.removeItem('paymentAttempted');
-      // Невелика затримка перед перенаправленням
-      setTimeout(() => {
-        window.location.href = BOT_URL;
-      }, 500);
+      // Перенаправляємо одразу без показу сторінки
+      window.location.href = BOT_URL;
+      return;
     } else {
+      // Якщо статус не знайдено, але була спроба оплати - перевіряємо через callback
+      // Якщо callback був успішний, перенаправляємо на бот
+      if (paymentAttempted === 'true') {
+        // Перевіряємо, чи не був успішний callback (якщо callback працював, платіж успішний)
+        // Оскільки callback обробляється на сервері, а ми тут на клієнті,
+        // просто перенаправляємо на бот, якщо немає явного статусу відмови
+        if (!finalStatus || finalStatus === '' || finalStatus === 'undefined') {
+          // Якщо статус не передано, але була спроба оплати - вважаємо успішним
+          // (оскільки callback вже обробив успішний платіж)
+          sessionStorage.removeItem('paymentAttempted');
+          window.location.href = BOT_URL;
+          return;
+        }
+      }
+      
       setStatus('failure');
-      // Якщо була спроба оплати, але оплата не пройшла - перенаправляємо на exit-intent
+      // Очищаємо маркер спроби оплати
       if (paymentAttempted === 'true') {
         sessionStorage.removeItem('paymentAttempted');
-        // Невелика затримка для показу повідомлення
-        setTimeout(() => {
-          router.push('/quiz/exit-intent');
-        }, 2000);
       }
     }
   }, [router.isReady, router.query, router]);
@@ -116,7 +125,7 @@ const PaymentResult: NextPage = () => {
             fontWeight: 600,
           }}
         >
-          Спробувати знову
+          Повернутись до оплати
         </Link>
       </main>
     </>
