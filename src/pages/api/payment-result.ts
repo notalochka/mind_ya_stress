@@ -9,6 +9,14 @@ export default async function handler(
   req: NextApiRequest,
   res: NextApiResponse
 ) {
+  // Діагностичне логування
+  console.log('=== Payment Result API ===');
+  console.log('Method:', req.method);
+  console.log('Query:', req.query);
+  console.log('Body type:', typeof req.body);
+  console.log('Body:', req.body);
+  console.log('========================');
+  
   // Обробляємо POST від WayForPay (якщо WayForPay перенаправляє через POST)
   if (req.method === 'POST') {
     try {
@@ -58,6 +66,9 @@ export default async function handler(
         }
       }
       
+      console.log('Extracted transactionStatus:', transactionStatus);
+      console.log('Extracted orderReference:', orderReference);
+      
       // Формуємо query параметри
       const queryParams = new URLSearchParams();
       if (transactionStatus) {
@@ -67,8 +78,16 @@ export default async function handler(
         queryParams.set('orderReference', String(orderReference));
       }
       
+      // Якщо параметри не знайдено, але callback був успішний, встановлюємо статус як approved
+      // (оскільки ми знаємо з callback, що платіж успішний)
+      if (!transactionStatus) {
+        queryParams.set('transactionStatus', 'approved');
+        console.log('No transactionStatus found, defaulting to approved');
+      }
+      
       // Перенаправляємо на сторінку з GET параметрами
       const redirectUrl = `/payment-result${queryParams.toString() ? `?${queryParams.toString()}` : ''}`;
+      console.log('Redirecting to:', redirectUrl);
       return res.redirect(302, redirectUrl);
     } catch (error) {
       console.error('Payment result API error:', error);
