@@ -133,6 +133,8 @@ export default async function handler(
     //   cleanReasonCode,
     //   merchantSignature
     // );
+    
+    console.log('Signature validation skipped (isValid = true)');
 
 
     if (!isValid) {

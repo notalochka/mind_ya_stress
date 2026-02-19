@@ -20,8 +20,9 @@ const SUCCESS_REDIRECT_URL = 'https://t.me/MindYa_ua_bot';
 
 export function getPaymentReturnUrl(): string {
   const base = APP_URL.replace(/\/$/, '');
-  // WayForPay перенаправляє через GET з query параметрами на сторінку
-  return `${base}/payment-result`;
+  // Використовуємо API route для обробки обох методів (GET і POST)
+  // WayForPay може перенаправляти через GET або POST
+  return `${base}/api/payment-result`;
 }
 
 export interface WayForPayProduct {
