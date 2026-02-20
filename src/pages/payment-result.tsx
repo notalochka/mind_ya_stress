@@ -4,7 +4,7 @@ import Head from 'next/head';
 import { useRouter } from 'next/router';
 import Link from 'next/link';
 
-const BOT_URL = 'https://t.me/MindYa_ua_bot';
+const BOT_URL = 'https://t.me/mindyaaa_bot?start=ZGw6MzE0Njgz';
 
 const PaymentResult: NextPage = () => {
   const router = useRouter();

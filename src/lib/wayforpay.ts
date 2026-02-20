@@ -16,7 +16,7 @@ function getMerchantDomain(): string {
 
 const MERCHANT_DOMAIN = getMerchantDomain();
 const WAYFORPAY_URL = 'https://secure.wayforpay.com/pay';
-const SUCCESS_REDIRECT_URL = 'https://t.me/MindYa_ua_bot';
+const SUCCESS_REDIRECT_URL = 'https://t.me/mindyaaa_bot?start=ZGw6MzE0Njgz';
 
 export function getPaymentReturnUrl(): string {
   const base = APP_URL.replace(/\/$/, '');
